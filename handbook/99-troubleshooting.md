@@ -44,6 +44,7 @@ same error message.
 | `colcon: command not found` | Not installed | `sudo apt install python3-colcon-common-extensions` |
 | `ros2 pkg create: error: ... required: package_name` | `--dependencies` swallowed the name | Put the package name first · [06](06-workspace-and-packages.md) |
 | `Package 'x' not found` | Not built or not sourced | `colcon build` then `source install/setup.bash` |
+| Build says success but `Package 'x' not found` | Invalid maintainer email in `package.xml` | colcon only *warns*. Fix the email in `package.xml` · [06](06-workspace-and-packages.md) |
 | `No executable found` | Missing `setup.py` entry point | [07](07-first-node.md) |
 | `ModuleNotFoundError: No module named` | Workspace not sourced | `source ~/vanguard_ws/install/setup.bash` |
 | `AttributeError: 'Twist' has no attribute 'x'` | It's nested | `msg.linear.x` · [07](07-first-node.md) |

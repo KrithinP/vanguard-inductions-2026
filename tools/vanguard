@@ -44,10 +44,14 @@ doctor() {
   else
     bad "git user.name not set" 'git config --global user.name "Your Name"'
   fi
-  if [ -n "$(git config --global user.email 2>/dev/null)" ]; then
-    ok "git user.email = $(git config --global user.email)"
-  else
+  GEMAIL=$(git config --global user.email 2>/dev/null)
+  if [ -z "$GEMAIL" ]; then
     bad "git user.email not set" 'git config --global user.email "you@example.com"'
+  elif ! printf '%s' "$GEMAIL" | grep -qE '^[^@[:space:]]+@[^@[:space:]]+\.[A-Za-z]{2,}$'; then
+    bad "git user.email is malformed: $GEMAIL" \
+        "ros2 pkg create copies this into package.xml; an invalid address makes colcon skip your package. Use a real address."
+  else
+    ok "git user.email = $GEMAIL"
   fi
 
   printf "\n${B}ROS 2${N}\n"

@@ -58,6 +58,13 @@ else
     set +u; source /opt/ros/jazzy/setup.bash; set -u
     BD=$(mktemp -d); mkdir -p "$BD/src"; cp -r src/sol1/* "$BD/src/" 2>/dev/null || true
     if (cd "$BD" && colcon build --symlink-install >/tmp/colcon.log 2>&1); then
+      # colcon only WARNS on a bad package.xml, then builds something that
+      # ros2 run can never find. Catch it here or the next line is baffling.
+      if grep -q "Failed to parse ROS package manifest" /tmp/colcon.log; then
+        BADMAIL=$(grep -o 'Invalid email "[^"]*"' /tmp/colcon.log | head -1)
+        nogo "package.xml is invalid — $BADMAIL" \
+             "ros2 pkg create copied your git email into package.xml. Fix it there (or run: git config --global user.email 'you@example.com' and recreate the package), then rebuild."
+      else
       go "colcon build succeeded"
       set +u; source "$BD/install/setup.bash" 2>/dev/null; set -u
       if timeout 25 bash -c '
@@ -68,6 +75,7 @@ else
         go "node publishes on /turtle1/cmd_vel"
       else
         nogo "nothing on /turtle1/cmd_vel" "Publish geometry_msgs/msg/Twist. Entry point must be named 'circle'."
+      fi
       fi
     else
       nogo "colcon build failed" "$(tail -3 /tmp/colcon.log 2>/dev/null | tr '\n' ' ')"

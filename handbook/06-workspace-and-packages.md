@@ -157,6 +157,21 @@ Not sourced, or the build failed. Run `colcon build` again and read the output â
 **Build succeeds but `ros2 run` says no executable**
 Your entry point isn't registered in `setup.py`. That's the next page.
 
+**Build says `Finished` but `ros2 run` says `Package 'first_light' not found`**
+Look near the top of the build output for:
+```
+WARNING: Failed to parse ROS package manifest ... Invalid email "..." for person
+```
+`ros2 pkg create` copies your **git email** into `package.xml` as the maintainer.
+If that address is malformed, colcon *warns*, reports success anyway, and quietly
+builds something ROS can never find. Open `package.xml`, fix the
+`<maintainer email="...">` line to a real address, and rebuild. Then fix it at
+source so it doesn't recur:
+```bash
+git config --global user.email "your.real@email.com"
+```
+`./tools/vanguard doctor` now checks this for you.
+
 **Weird errors after renaming or moving things**
 Stale build artefacts. Nuke and rebuild:
 ```bash
