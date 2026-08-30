@@ -3,7 +3,7 @@ from glob import glob
 
 from setuptools import setup
 
-package_name = 'sol4_provided'
+package_name = 'vanguard_navigation'
 
 setup(
     name=package_name,

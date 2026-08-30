@@ -2,7 +2,7 @@
 
 Provided. Run it, drive around, and watch a map appear:
 
-    ros2 launch sol4_provided slam.launch.py
+    ros2 launch vanguard_navigation slam.launch.py
 
 Then save the map:
 
@@ -19,7 +19,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     params = os.path.join(
-        get_package_share_directory('sol4_provided'), 'config', 'slam_toolbox.yaml')
+        get_package_share_directory('vanguard_navigation'), 'config', 'slam_toolbox.yaml')
 
     use_sim_time = LaunchConfiguration('use_sim_time')
 

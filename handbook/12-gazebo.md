@@ -118,7 +118,7 @@ Add a few obstacle boxes yourself — you'll want them later.
 
 ## Making the rover physical
 
-Your Sol 1 URDF only had `<visual>`. Physics needs mass and collision on **every**
+Your earlier URDF only had `<visual>`. Physics needs mass and collision on **every**
 link:
 
 ```xml

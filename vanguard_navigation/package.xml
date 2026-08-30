@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>sol4_provided</name>
+  <name>vanguard_navigation</name>
   <version>1.0.0</version>
   <description>Provided SLAM and Nav2 configuration for the bonus mission.</description>
   <maintainer email="noreply@example.com">Project Vanguard</maintainer>

@@ -2,7 +2,7 @@
 
 Provided. Assumes SLAM (or a map server) is already publishing map -> odom.
 
-    ros2 launch sol4_provided nav2.launch.py
+    ros2 launch vanguard_navigation nav2.launch.py
 
 Then in RViz use the "2D Goal Pose" button to send it somewhere.
 """
@@ -26,7 +26,7 @@ LIFECYCLE_NODES = [
 
 def generate_launch_description():
     params = os.path.join(
-        get_package_share_directory('sol4_provided'), 'config', 'nav2_params.yaml')
+        get_package_share_directory('vanguard_navigation'), 'config', 'nav2_params.yaml')
 
     use_sim_time = LaunchConfiguration('use_sim_time')
     common = [params, {'use_sim_time': use_sim_time}]

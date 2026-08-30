@@ -103,7 +103,7 @@ Ubuntu running *inside* a window on Windows or macOS.
 
 **Why:** zero risk to your existing system, and you can delete it if it goes wrong.
 
-**Why not:** Gazebo will be slow, sometimes unusably so. Fine for Sol 1. You may
+**Why not:** Gazebo will be slow, sometimes unusably so. Fine for the first task. You may
 struggle later.
 
 Install [VirtualBox](https://www.virtualbox.org/) (free), create a new VM with the

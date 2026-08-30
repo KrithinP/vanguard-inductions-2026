@@ -123,6 +123,6 @@ Two ways to handle it:
    it'll take an hour to find.
 
 > If your marker shows up in RViz at roughly the right *distance* but in a
-> completely wrong *direction* — this is why. It's the most common Sol 3 bug.
+> completely wrong *direction* — this is why. It's the most common bug here.
 
 Next: [`22-aruco.md`](22-aruco.md).

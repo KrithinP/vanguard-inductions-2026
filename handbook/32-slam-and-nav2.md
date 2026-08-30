@@ -5,13 +5,13 @@
 > can explain what happened.
 
 **You are not implementing any of this.** SLAM and Nav2 are each years of work by
-large teams. The configuration is provided in `sol4_provided/`. Your job is to run
+large teams. The configuration is provided in `vanguard_navigation/`. Your job is to run
 it, look carefully, and explain it.
 
 ## Getting the provided package
 
 ```bash
-cp -r sol4_provided ~/vanguard_ws/src/
+cp -r vanguard_navigation ~/vanguard_ws/src/
 cd ~/vanguard_ws && colcon build --symlink-install && source install/setup.bash
 ```
 
@@ -43,9 +43,9 @@ Step 4 is why a mapped corridor comes out straight instead of gently curving awa
 ### Run it
 
 ```bash
-# Terminal 1 — simulator, rover spawned, bridge running (as in Sol 2)
+# Terminal 1 — simulator, rover spawned, bridge running (as before)
 # Terminal 2
-ros2 launch sol4_provided slam.launch.py
+ros2 launch vanguard_navigation slam.launch.py
 # Terminal 3
 rviz2
 ```
@@ -148,7 +148,7 @@ you notice the problem.
 With the simulator and SLAM already running:
 
 ```bash
-ros2 launch sol4_provided nav2.launch.py
+ros2 launch vanguard_navigation nav2.launch.py
 ```
 
 Wait for the lifecycle manager to report everything active. Then in RViz click
@@ -222,7 +222,7 @@ The write-up asks you to describe a failure you caused. Some suggestions:
 **Map never appears, and slam_toolbox prints nothing at all** — it is almost
 certainly stuck in `unconfigured`. Check with the `get_state` call above. If you
 launched the node by hand with `ros2 run` instead of using
-`ros2 launch sol4_provided slam.launch.py`, there is no lifecycle manager and it
+`ros2 launch vanguard_navigation slam.launch.py`, there is no lifecycle manager and it
 will never activate. Use the launch file.
 
 **Map never appears but SLAM is `active`** — Fixed Frame isn't `map`, or it isn't
@@ -241,7 +241,7 @@ manager log.
 (`ros2 topic echo /cmd_vel`). If the plan exists but no velocities flow, the
 controller failed to activate. **Also check the message type.** On our Jazzy stack
 (Nav2 1.3.12) `/cmd_vel` is `geometry_msgs/msg/Twist`, which matches the bridge
-line from Sol 2 — but newer Nav2 releases switched to `TwistStamped`, and if the
+line from Task 2 — but newer Nav2 releases switched to `TwistStamped`, and if the
 two ends disagree the messages vanish with no error at all. Confirm with:
 
 ```bash
@@ -259,4 +259,4 @@ RViz only.
 
 ---
 
-Back to [`sols/sol4/README.md`](../sols/sol4/README.md).
+Back to the Task 4 sheet.

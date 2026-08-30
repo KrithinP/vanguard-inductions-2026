@@ -174,4 +174,4 @@ full speed until you're there.
 
 ---
 
-Back to [`sols/sol2/README.md`](../sols/sol2/README.md).
+Back to the Task 2 sheet.

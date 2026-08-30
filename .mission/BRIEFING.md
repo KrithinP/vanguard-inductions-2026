@@ -14,7 +14,7 @@ FRAGMENT_3=????   sealed in the archive
 You will not find these by clicking around in a file manager. Use the terminal.
 Everything you need is taught in `handbook/01-terminal.md`.
 
-When you have all three, go back to `sols/sol1/README.md` — step 8 tells you how
+When you have all three, go back to your task sheet — it tells you how
 to authenticate.
 
 > Why is this directory hidden? Because its name starts with a dot. Plain `ls`

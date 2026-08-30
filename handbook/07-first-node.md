@@ -140,7 +140,7 @@ ros2 topic hz /greeting     # should read ~2.0
 
 ## Now go and write yours
 
-Your Sol 1 task needs a node that publishes **`geometry_msgs/msg/Twist`** to
+Your first task needs a node that publishes **`geometry_msgs/msg/Twist`** to
 **`/turtle1/cmd_vel`** at **10 Hz**, making the turtle draw a shape.
 
 Things to work out for yourself:
@@ -182,5 +182,4 @@ Expected — `turtlesim` has walls. Reset with `ros2 service call /reset std_srv
 
 ---
 
-That's the handbook. Go back to [`sols/sol1/README.md`](../sols/sol1/README.md)
-and finish the mission.
+That's the fundamentals. Go back to your task sheet and finish it.

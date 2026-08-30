@@ -25,7 +25,7 @@ doctor() {
     case "${VERSION_ID:-}" in
       24.04) ok "Ubuntu 24.04 LTS" ;;
       22.04) warn "Ubuntu 22.04 (team standard is 24.04)" \
-                  "Works for Sol 1, but ROS 2 Jazzy needs 24.04. Plan to upgrade." ;;
+                  "Enough to get started, but ROS 2 Jazzy needs 24.04. Plan to upgrade." ;;
       *)     bad "Ubuntu ${VERSION_ID:-unknown}" \
                  "This induction targets Ubuntu 24.04 LTS. See handbook/00-install-ubuntu.md" ;;
     esac
