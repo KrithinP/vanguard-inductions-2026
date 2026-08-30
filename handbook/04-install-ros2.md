@@ -40,6 +40,23 @@ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
   -o /usr/share/keyrings/ros-archive-keyring.gpg
 ```
 
+> ⚠ **If that `curl` fails, run it again.** `raw.githubusercontent.com` is
+> intermittently unreachable from some campus and mobile networks — we saw it fail
+> three times in a row and then succeed on the fourth. Errors that mean "try
+> again", not "you did it wrong":
+> ```
+> curl: (35) OpenSSL SSL_connect: Connection reset by peer
+> curl: (28) Operation timed out
+> ```
+> Check you actually got the key before moving on — an empty file causes a very
+> confusing `NO_PUBKEY` error two steps later:
+> ```bash
+> ls -la /usr/share/keyrings/ros-archive-keyring.gpg
+> ```
+> It should be about **1.2 kB**. If it's 0 bytes, the download failed. Still stuck
+> after several tries? Use a phone hotspot for this one command, or
+> [open an Issue](../../../issues/new/choose).
+
 Then the repository itself:
 
 ```bash
@@ -105,7 +122,19 @@ rosdep update
 > includes extra modules the plain one omits. Installing plain `opencv-python`
 > later will silently shadow this and break things in a confusing way. Don't.
 
-## 6. Source it
+## 6. Tell git who you are
+
+If you haven't already (the README asks for this too):
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+`./tools/vanguard doctor` checks for these, because git refuses to commit without
+them and the error it gives is not obvious.
+
+## 7. Source it
 
 ```bash
 source /opt/ros/jazzy/setup.bash
@@ -121,7 +150,7 @@ source ~/.bashrc
 If that line meant nothing to you, go back and read
 [`03-bashrc-path-source.md`](03-bashrc-path-source.md). You'll need it within the hour.
 
-## 7. Verify
+## 8. Verify
 
 ```bash
 ros2 --version
@@ -165,7 +194,7 @@ ros2 run demo_nodes_py listener
 > discovery mechanism is the core of ROS 2 — and it's how nodes on a laptop find
 > nodes on a rover over Wi-Fi with nothing more than being on the same network.
 
-## 8. Run the doctor
+## 9. Run the doctor
 
 From the induction repo:
 

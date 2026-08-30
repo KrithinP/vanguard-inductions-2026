@@ -81,6 +81,16 @@ cd vanguard-inductions-2026
 (If `git` isn't installed yet, that's fine — [`handbook/00`](handbook/00-install-ubuntu.md)
 gets you there first.)
 
+**Then tell git who you are.** On a fresh machine it doesn't know, and it will
+refuse to let you commit anything until you say:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+Use the email on your GitHub account, or your commits won't be linked to you.
+
 ### 3. Pick a callsign
 
 Flight controllers go by callsign, not name. Pick yours — 3 to 16 characters,
@@ -126,7 +136,7 @@ Run the same checks locally any time:
 | | |
 |---|---|
 | **Induction opens** | 30 August 2026 |
-| **Everything due** | **27 September 2026, 23:59 IST** |
+| **Everything due** | **23 September 2026, 23:59 IST** |
 
 Missions are released through that window. Your single Pull Request carries all
 your work — keep pushing to it until the deadline.
@@ -170,9 +180,9 @@ you tried, the exact command, the full error, and your `vanguard doctor` output.
 
 Somewhere in this repository is something we haven't mentioned anywhere.
 
-It isn't part of any mission, it isn't worth marks, and nothing tells you where to
-look. The first person to find it and open an Issue saying what it says gets a
-mission patch and our genuine respect.
+It isn't part of any mission and nothing tells you where to look. Find it, open an
+Issue saying what it says, and there are **brownie points** in it for you — plus
+our genuine respect.
 
 Perseverance's parachute had *Dare Mighty Things* woven into it in binary, and
 Curiosity's wheels stamp "JPL" in Morse code into the dirt of Mars with every turn.

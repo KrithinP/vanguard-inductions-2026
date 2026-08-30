@@ -30,6 +30,8 @@ same error message.
 |---|---|---|
 | `ros2: command not found` | Not sourced | `source /opt/ros/jazzy/setup.bash` · [03](03-bashrc-path-source.md) |
 | `Unable to locate package ros-jazzy-*` | Repo not added, or no `apt update` | [04 step 3](04-install-ros2.md) |
+| `curl: (35) Connection reset` on the ROS key | Flaky network to GitHub | **Just retry** — often works on the 3rd or 4th go · [04](04-install-ros2.md) |
+| `Author identity unknown` / can't commit | git doesn't know who you are | `git config --global user.name "..."` and `user.email` |
 | `GPG error` / `NO_PUBKEY` | Signing key missing | Redo the `curl` in [04 step 3](04-install-ros2.md) |
 | `Could not get lock /var/lib/dpkg/` | Another apt is running | Wait, then [02](02-apt.md) |
 | `externally-managed-environment` | Ubuntu 24.04 pip policy | Add `--user --break-system-packages` |
