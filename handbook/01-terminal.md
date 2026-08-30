@@ -49,7 +49,7 @@ ls -a
 **Any file whose name starts with `.` is hidden from plain `ls`.** That's the whole
 rule — there's no special "hidden" attribute like Windows has. `-a` means *all*.
 
-> **Remember this one.** Part of Task 1 depends on it.
+> **Remember this one.** Part of Sol 1 depends on it.
 
 Add `-l` for the long view:
 
@@ -254,7 +254,7 @@ echo -n "hello" | sha256sum | cut -c1-16
 
 ---
 
-You now have everything you need for the `.mission/` directory in Task 1.
+You now have everything you need for the `.mission/` directory in Sol 1.
 Go and try it before continuing — it's more fun than reading.
 
 Next: [`02-apt.md`](02-apt.md).

@@ -1,4 +1,4 @@
-# 🛰 TASK 1 — "Boot Sequence"
+# 🛰 SOL 1 — "Boot Sequence"
 
 > **Objective:** bring a workstation online, recover the mission authentication
 > phrase, and put the rover's first command on the wire.
@@ -13,7 +13,7 @@ over a network — one for the camera, one for the wheels, one deciding where to
 Before you can write any of them, you need the environment they live in, and you
 need to be able to *see* what they're saying to each other.
 
-That's Task 1. It's the least glamorous mission you'll fly and the one everything
+That's Sol 1. It's the least glamorous mission you'll fly and the one everything
 else stands on.
 
 You'll also find the mission directory came back from descent corrupted. Recovering
@@ -125,8 +125,8 @@ ros2 run first_light circle
 Then copy the package into this repository:
 
 ```bash
-mkdir -p src/task1
-cp -r ~/vanguard_ws/src/first_light src/task1/
+mkdir -p src/sol1
+cp -r ~/vanguard_ws/src/first_light src/sol1/
 ```
 
 > Copy the **source only**. Never commit `build/`, `install/` or `log/` —
@@ -159,7 +159,7 @@ Run this before you submit:
 MISSION 1 — BOOT SEQUENCE
   GO    callsign = NIGHTJAR
   GO    flag submitted (verified at mission control)
-  GO    package present at src/task1/first_light
+  GO    package present at src/sol1/first_light
   GO    node source present
   GO    mission log written
   GO    colcon build succeeded
@@ -186,7 +186,7 @@ check runs automatically on every push to your fork.
 |---|---|
 | `callsign.txt` | your callsign, upper case |
 | `FLAG.txt` | 16 hex characters |
-| `src/task1/first_light/` | your package (source only) |
+| `src/sol1/first_light/` | your package (source only) |
 | `MISSION_LOG.md` | honest write-up |
 
 ## Submitting

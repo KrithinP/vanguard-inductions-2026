@@ -135,7 +135,7 @@ ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist \
 
 **Watch the turtle move in a circle.** `Ctrl+C` to stop.
 
-You just drove a robot from the command line. In Task 1 you'll write a node that
+You just drove a robot from the command line. In Sol 1 you'll write a node that
 does this properly — but being able to do it by hand is how you test whether a
 problem is in your code or in the robot.
 

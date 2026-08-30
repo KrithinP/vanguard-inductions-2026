@@ -182,4 +182,4 @@ Expected — `turtlesim` has walls. Reset with `ros2 service call /reset std_srv
 
 ---
 
-That's the fundamentals. Go back to your task sheet and finish it.
+That's the fundamentals. Go back to your sol sheet and finish it.

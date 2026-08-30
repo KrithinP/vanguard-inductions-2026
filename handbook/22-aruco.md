@@ -131,7 +131,7 @@ and it must match reality exactly.
 
 ## Detecting
 
-**From here on you write the code.** Task 1 handed you a working node to copy;
+**From here on you write the code.** Sol 1 handed you a working node to copy;
 this one gives you the API and the traps, and you assemble it. That step up is
 deliberate.
 
@@ -308,4 +308,4 @@ between nodes.
 
 ---
 
-Back to the Task 3 sheet.
+Back to the Sol 3 sheet.

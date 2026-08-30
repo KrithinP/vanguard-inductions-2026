@@ -1,4 +1,4 @@
-# 🛰 TASK 4 — "Terra Incognita"
+# 🛰 SOL 4 — "Terra Incognita"
 
 > **The hard one.** Optional, and it can only add to your evaluation — but this is
 > the task that tells us who you are as an engineer.
@@ -161,7 +161,7 @@ described
 
 ## Part E — Write it up · *short*
 
-`src/task4/NOTES.md`, 300–500 words. Not an essay:
+`src/sol4/NOTES.md`, 300–500 words. Not an essay:
 
 1. **How did you pick which frontier to go to, and what's wrong with your choice?**
 2. **What happens when Nav2 aborts a goal?** Describe what your code does and why.
@@ -179,8 +179,8 @@ reasoning honestly beats sounding confident.
 
 | | |
 |---|---|
-| `src/task4/` | your avoidance node, action client, and explorer |
-| `src/task4/NOTES.md` | the write-up |
+| `src/sol4/` | your avoidance node, action client, and explorer |
+| `src/sol4/NOTES.md` | the write-up |
 | `.rviz` config | your saved layout |
 | saved map | the one your rover built by itself |
 | video | under 90 s — the rover exploring unattended, and stopping |
@@ -193,4 +193,4 @@ In the recording, **say out loud how your code decides where to go next.**
 ./tools/vanguard check
 ```
 
-Task 4 never fails your build — it reports only. It is a bonus.
+Sol 4 never fails your build — it reports only. It is a bonus.

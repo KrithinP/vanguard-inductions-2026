@@ -18,10 +18,10 @@ idle()  { printf "  ${D}·     %s${N}\n" "$1"; }
 note()  { printf "  ${Y}·     %s${N}\n" "$1"; }
 
 # has this mission been started at all?
-has_work() { [ -d "src/task$1" ] && [ -n "$(find "src/task$1" -type f ! -name '.gitkeep' 2>/dev/null | head -1)" ]; }
+has_work() { [ -d "src/sol$1" ] && [ -n "$(find "src/sol$1" -type f ! -name '.gitkeep' 2>/dev/null | head -1)" ]; }
 
-# ──────────────────────────────── TASK 1 ────────────────────────────────
-section "TASK 1 — SETUP"
+# ──────────────────────────────── SOL 1 ────────────────────────────────
+section "SOL 001 — BOOT SEQUENCE"
 MFAIL=0
 if [ ! -f callsign.txt ] && [ ! -f FLAG.txt ] && ! has_work 1; then
   idle "not started"
@@ -43,7 +43,7 @@ else
     nogo "FLAG.txt missing" "Recover the mission directory. Run: ./tools/vanguard flag"
   fi
 
-  PKG=src/task1/first_light
+  PKG=src/sol1/first_light
   { [ -f "$PKG/package.xml" ] && [ -f "$PKG/setup.py" ]; } \
     && go "package present at $PKG" \
     || nogo "no package at $PKG" "See handbook/06-workspace-and-packages.md"
@@ -56,7 +56,7 @@ else
 
   if [ -f "$PKG/package.xml" ] && command -v colcon >/dev/null 2>&1 && [ -d /opt/ros/jazzy ]; then
     set +u; source /opt/ros/jazzy/setup.bash; set -u
-    BD=$(mktemp -d); mkdir -p "$BD/src"; cp -r src/task1/* "$BD/src/" 2>/dev/null || true
+    BD=$(mktemp -d); mkdir -p "$BD/src"; cp -r src/sol1/* "$BD/src/" 2>/dev/null || true
     if (cd "$BD" && colcon build --symlink-install >/tmp/colcon.log 2>&1); then
       # colcon only WARNS on a bad package.xml, then builds something that
       # ros2 run can never find. Catch it here or the next line is baffling.
@@ -85,71 +85,71 @@ else
   [ "$MFAIL" -eq 0 ] && DONE_LIST="$DONE_LIST 1"
 fi
 
-# ──────────────────────────────── TASK 2 ────────────────────────────────
-section "TASK 2 — ROVER"
+# ──────────────────────────────── SOL 2 ────────────────────────────────
+section "SOL 014 — ROLLING CHASSIS"
 MFAIL=0
 if ! has_work 2; then
   idle "not started"
 else
   STARTED="$STARTED 2"
-  find src/task2 \( -name '*.urdf' -o -name '*.xacro' \) 2>/dev/null | grep -q . \
+  find src/sol2 \( -name '*.urdf' -o -name '*.xacro' \) 2>/dev/null | grep -q . \
     && go "robot description present" \
-    || nogo "no .urdf or .xacro under src/task2/" "See the Task 2 sheet."
-  grep -rqs 'base_link' src/task2 && go "base_link frame defined" \
+    || nogo "no .urdf or .xacro under src/sol2/" "See the Sol 2 sheet."
+  grep -rqs 'base_link' src/sol2 && go "base_link frame defined" \
     || nogo "no base_link" "ROS assumes a link called base_link exists."
-  W=$(grep -rhos 'wheel' src/task2 --include='*.urdf' --include='*.xacro' 2>/dev/null | wc -l)
+  W=$(grep -rhos 'wheel' src/sol2 --include='*.urdf' --include='*.xacro' 2>/dev/null | wc -l)
   [ "$W" -ge 4 ] && go "wheels defined ($W references)" \
     || nogo "fewer than 4 wheels found" "This is a four-wheel rover."
-  grep -rqs 'tf_topic' src/task2 && go "DiffDrive publishes odom TF" \
+  grep -rqs 'tf_topic' src/sol2 && go "DiffDrive publishes odom TF" \
     || note "no <tf_topic> found — without it odom→base_link never appears (handbook/12)"
-  grep -rqs 'cmd_vel' src/task2 && go "publishes to /cmd_vel" \
+  grep -rqs 'cmd_vel' src/sol2 && go "publishes to /cmd_vel" \
     || nogo "nothing references cmd_vel" "Your driving node must publish Twist."
-  grep -rqs 'odom' src/task2 && go "uses /odom" \
+  grep -rqs 'odom' src/sol2 && go "uses /odom" \
     || nogo "nothing references odom" "Close the loop on odometry."
   [ "$MFAIL" -eq 0 ] && DONE_LIST="$DONE_LIST 2"
 fi
 
-# ──────────────────────────────── TASK 3 ────────────────────────────────
-section "TASK 3 — VISION"
+# ──────────────────────────────── SOL 3 ────────────────────────────────
+section "SOL 031 — EYES"
 MFAIL=0
 if ! has_work 3; then
   idle "not started"
 else
   STARTED="$STARTED 3"
-  find src/task3 -name '*.py' 2>/dev/null | grep -q . && go "sources present" \
-    || nogo "no Python under src/task3/" "See the Task 3 sheet."
-  grep -rqs 'cv_bridge\|CvBridge' src/task3 && go "cv_bridge used" \
+  find src/sol3 -name '*.py' 2>/dev/null | grep -q . && go "sources present" \
+    || nogo "no Python under src/sol3/" "See the Sol 3 sheet."
+  grep -rqs 'cv_bridge\|CvBridge' src/sol3 && go "cv_bridge used" \
     || nogo "no cv_bridge usage" "Needed to convert ROS images to OpenCV."
-  grep -rqs 'aruco\|Aruco\|ArUco' src/task3 && go "marker detection present" \
+  grep -rqs 'aruco\|Aruco\|ArUco' src/sol3 && go "marker detection present" \
     || nogo "no ArUco usage" "Marker detection is required."
-  grep -rqs 'test_images\|expected.json' src/task3 \
+  grep -rqs 'test_images\|expected.json' src/sol3 \
     && go "runs against the provided test images" \
-    || nogo "no reference to the test images" "See the Task 3 sheet."
-  grep -rqs 'camera_info\|CameraInfo' src/task3 && go "camera intrinsics used" \
+    || nogo "no reference to the test images" "See the Sol 3 sheet."
+  grep -rqs 'camera_info\|CameraInfo' src/sol3 && go "camera intrinsics used" \
     || nogo "no camera_info usage" "Pose estimation needs camera intrinsics."
-  grep -rqs 'TransformStamped\|sendTransform\|TransformBroadcaster' src/task3 \
+  grep -rqs 'TransformStamped\|sendTransform\|TransformBroadcaster' src/sol3 \
     && go "publishes marker TF" || nogo "no TF broadcast" "Publish the marker as a TF frame."
   [ "$MFAIL" -eq 0 ] && DONE_LIST="$DONE_LIST 3"
 fi
 
-# ──────────────────────────────── TASK 4 ────────────────────────────────
-section "TASK 4 — AUTONOMY  (bonus)"
+# ──────────────────────────────── SOL 4 ────────────────────────────────
+section "SOL 067 — TERRA INCOGNITA  (bonus)"
 if ! has_work 4; then
   idle "not attempted — this costs you nothing"
 else
   STARTED="$STARTED 4"
-  grep -rqs 'LaserScan' src/task4 && go "reads the laser" || note "no LaserScan subscription"
-  grep -rqs 'NavigateToPose' src/task4 && go "commands Nav2" || note "no NavigateToPose action client"
-  grep -rqs 'send_goal_async' src/task4 && go "uses the async action API" \
+  grep -rqs 'LaserScan' src/sol4 && go "reads the laser" || note "no LaserScan subscription"
+  grep -rqs 'NavigateToPose' src/sol4 && go "commands Nav2" || note "no NavigateToPose action client"
+  grep -rqs 'send_goal_async' src/sol4 && go "uses the async action API" \
     || note "no send_goal_async — a blocking client will deadlock"
-  grep -rqs 'OccupancyGrid' src/task4 && go "reads the map" || note "no OccupancyGrid subscription"
-  grep -rqs 'TRANSIENT_LOCAL\|transient_local' src/task4 && go "map QoS set correctly" \
+  grep -rqs 'OccupancyGrid' src/sol4 && go "reads the map" || note "no OccupancyGrid subscription"
+  grep -rqs 'TRANSIENT_LOCAL\|transient_local' src/sol4 && go "map QoS set correctly" \
     || note "no transient-local QoS — you will receive no map at all"
-  { [ -f src/task4/NOTES.md ] && [ "$(wc -w < src/task4/NOTES.md)" -gt 250 ]; } \
-    && go "notes written ($(wc -w < src/task4/NOTES.md) words)" \
+  { [ -f src/sol4/NOTES.md ] && [ "$(wc -w < src/sol4/NOTES.md)" -gt 250 ]; } \
+    && go "notes written ($(wc -w < src/sol4/NOTES.md) words)" \
     || note "NOTES.md missing or under 250 words"
-  find src/task4 -name '*.rviz' 2>/dev/null | grep -q . && go "RViz config committed" || note "no .rviz config"
-  find src/task4 \( -name '*.yaml' -o -name '*.pgm' \) 2>/dev/null | grep -q . \
+  find src/sol4 -name '*.rviz' 2>/dev/null | grep -q . && go "RViz config committed" || note "no .rviz config"
+  find src/sol4 \( -name '*.yaml' -o -name '*.pgm' \) 2>/dev/null | grep -q . \
     && go "saved map present" || note "no saved map"
   DONE_LIST="$DONE_LIST 4"   # bonus never fails
 fi
@@ -157,12 +157,12 @@ fi
 # ─────────────────────────────── SUMMARY ───────────────────────────────
 printf "\n${B}────────────────────────────────────────${N}\n"
 if [ -z "$STARTED" ]; then
-  printf "${D}Nothing submitted yet. Nothing to check yet.${N}\n\n"
+  printf "${D}Nothing submitted yet. Start at sols/sol1.md${N}\n\n"
   exit 0
 fi
 printf "Started:%s   Complete:%s\n" "${STARTED:-  none}" "${DONE_LIST:-  none}"
 if [ "$FAIL" -eq 0 ]; then
-  printf "${G}${B}ALL STATIONS GO.${N}\n\n"
+  printf "${G}${B}ALL STATIONS GO.${N}  ${D}Dare mighty things.${N}\n\n"
 else
   printf "${R}${B}HOLD — fix the NO-GO lines above.${N} ${D}(Anything not started is ignored.)${N}\n\n"
   exit 1

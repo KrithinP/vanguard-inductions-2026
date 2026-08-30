@@ -1,6 +1,26 @@
-# 🛰 Project Vanguard — Autonomous Subsystem
+<div align="center">
 
-**BITS Pilani Hyderabad · Mars Rover Team · Induction 2026**
+```
+        ·  .           ✦                    ·               ✦
+   ✦          ___                                    ·
+        .    /   \___     P R O J E C T              ✦        ·
+            |  o  o   \_    V A N G U A R D
+     ·      |___________|                                  ·
+             |_|     |_|   Autonomous Subsystem   ·
+   ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+```
+
+# 🛰 INDUCTION 2026
+
+**BITS Pilani Hyderabad · Mars Rover Team**
+
+![ROS 2](https://img.shields.io/badge/ROS_2-Jazzy-22314E?logo=ros&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-24.04_LTS-E95420?logo=ubuntu&logoColor=white)
+![Gazebo](https://img.shields.io/badge/Gazebo-Harmonic-F58113?logo=gazebo&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)
+[![Flight Readiness Poll](https://github.com/KrithinP/vanguard-inductions-2026/actions/workflows/checks.yml/badge.svg)](https://github.com/KrithinP/vanguard-inductions-2026/actions/workflows/checks.yml)
+
+</div>
 
 ---
 
@@ -12,20 +32,40 @@
 
 ---
 
+---
+
 Everything you need is in this repository: the four tasks, a reference handbook
 that starts from *what is a terminal*, a zero-install environment, and tooling
 that checks your work before a human ever sees it.
 
-## The tasks
+> ### Why we count in Sols
+>
+> A Martian solar day is **24 hours, 39 minutes and 35 seconds**. It's called a
+> **sol**, and it's just long enough to be a genuine nuisance: mission teams
+> working surface operations live on Mars time, so their working day slides about
+> forty minutes later than everyone else's, every single day. After a fortnight
+> you're eating breakfast at midnight.
+>
+> Rovers count their lives in sols. Opportunity was built for 90 and lasted 5,111.
+> So do we.
 
-| | Task | What you'll build | Effort |
+## The Sols
+
+```
+   SOL 001 ──────── SOL 014 ──────── SOL 031 ──────── SOL 067
+   boot             chassis          eyes             autonomy
+   ▓▓▓▓▓▓           ▓▓▓▓▓▓           ▓▓▓▓▓▓           ▓▓▓▓▓▓▓▓▓▓▓
+   guided           assembled        described        on your own
+```
+
+| | Sol | What you'll build | Effort |
 |---|---|---|---|
-| **1** | [Boot Sequence](tasks/task1.md) | A working workstation, and your first ROS 2 node | 6–8 h |
-| **2** | [Rolling Chassis](tasks/task2.md) | A four-wheel rover you can drive in simulation | 6–8 h |
-| **3** | [Eyes](tasks/task3.md) | A camera, and markers located in 3-D | 6–8 h |
-| **4** | [Terra Incognita](tasks/task4.md) | ⭐ **Bonus** — a rover that explores on its own | 12–18 h |
+| **1** | [Boot Sequence](sols/sol1.md) | A working workstation, and your first ROS 2 node | 6–8 h |
+| **2** | [Rolling Chassis](sols/sol2.md) | A four-wheel rover you can drive in simulation | 6–8 h |
+| **3** | [Eyes](sols/sol3.md) | A camera, and markers located in 3-D | 6–8 h |
+| **4** | [Terra Incognita](sols/sol4.md) | ⭐ **Bonus** — a rover that explores on its own | 12–18 h |
 
-Also as printable PDFs in [`tasks/`](tasks/).
+Also as printable PDFs in [`sols/`](sols/README.md).
 
 > ### It looks like a lot. It isn't as bad as it looks.
 >
@@ -35,18 +75,18 @@ Also as printable PDFs in [`tasks/`](tasks/).
 > [`handbook/99-troubleshooting.md`](handbook/99-troubleshooting.md) with the fix.
 >
 > **You write far less code than the page count suggests** — around 30 lines for
-> Task 1. Most of the time in the early tasks goes on getting the environment
+> Sol 1. Most of the time in the early tasks goes on getting the environment
 > right, which is why we've written so much about it.
 >
-> **The support gets lighter as you go, on purpose.** Task 1 hands you a working
-> node to copy. Task 2 gives you the pieces to assemble. Task 3 gives you the API
-> and the traps, and you write the node. Task 4 gives you the algorithm in words
-> and you build it. If Task 4 feels hard, that's the design — it's a bonus, and
+> **The support gets lighter as you go, on purpose.** Sol 1 hands you a working
+> node to copy. Sol 2 gives you the pieces to assemble. Sol 3 gives you the API
+> and the traps, and you write the node. Sol 4 gives you the algorithm in words
+> and you build it. If Sol 4 feels hard, that's the design — it's a bonus, and
 > it's meant to stretch the people who want stretching.
 >
-> **You are not expected to finish all four.** Task 1 alone, done properly and
+> **You are not expected to finish all four.** Sol 1 alone, done properly and
 > understood, is a perfectly good submission — and counts for more than four
-> rushed ones you can't explain. Start at Task 1 and get as far as you get.
+> rushed ones you can't explain. Start at Sol 1 and get as far as you get.
 
 ## What you need
 
@@ -131,7 +171,7 @@ haven't started is reported as *not started* and never counts against you.
 
 | | |
 |---|---|
-| [`tasks/`](tasks/) | The four task sheets, in Markdown and as printable PDFs. |
+| [`sols/`](sols/README.md) | The four Sol sheets, in Markdown and as printable PDFs. |
 | [`handbook/`](handbook/) | The reference material, from the terminal up. Each task tells you which parts you need. |
 | [`docker/`](docker/) | The zero-install environment. |
 | [`tools/`](tools/) | `vanguard doctor` and the readiness check. |
@@ -141,13 +181,15 @@ haven't started is reported as *not started* and never counts against you.
 
 ## Submitting
 
-1. Work on your fork, committing as you go. **Small, frequent commits with real
+1. **Keep [`MISSION_LOG.md`](MISSION_LOG.md) as you go** — there's a template in the
+   repo. It's the thing we read most carefully.
+2. Work on your fork, committing as you go. **Small, frequent commits with real
    messages** — `add velocity publisher`, not `stuff`. We read these.
-2. Open **one Pull Request** to this repository's `main`, titled
+3. Open **one Pull Request** to this repository's `main`, titled
    `NAME [ID_NUMBER]` — e.g. `Ada Lovelace [2026A7PS0042H]`.
-3. Keep pushing to that same PR. One PR carries all your work.
+4. Keep pushing to that same PR. One PR carries all your work.
 
-Task sheets ask for a **screen recording under 90 seconds** with one thing
+Sol sheets ask for a **screen recording under 90 seconds** with one thing
 explained out loud. Upload to Google Drive (*Anyone with the link*) or YouTube
 (*Unlisted*) and paste the link in your PR — **check it opens in a private
 window.** Don't commit video files.
@@ -192,6 +234,22 @@ you tried, the exact command, the full error, and your `vanguard doctor` output.
 **Evaluator:** Krithin Poola — Autonomous Lead, Project Vanguard.
 
 ---
+
+## Mission patches
+
+Every NASA mission has a patch. So do we — awarded, not given:
+
+| | | |
+|---|---|---|
+| 🛰 | **FIRST LIGHT** | Sol 1 complete, and you can explain your node |
+| 🔧 | **ROLLING** | Sol 2 complete — it drives, and comes back roughly where it started |
+| 👁 | **LINE OF SIGHT** | Sol 3 complete — a marker placed correctly in 3-D |
+| 🗺 | **TERRA INCOGNITA** | Sol 4 — your rover explored an unknown arena unattended, and *stopped* |
+| 🔍 | **CURIOUS** | You found the thing we didn't tell you about |
+| 🤝 | **CAPCOM** | You answered someone else's Issue with something that actually helped |
+| 🩹 | **ANOMALY REPORT** | You found a real bug in *our* instructions and told us |
+
+The last three have nothing to do with code, and we mean them just as seriously.
 
 ## One more thing
 

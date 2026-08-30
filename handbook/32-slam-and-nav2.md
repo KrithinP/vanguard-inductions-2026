@@ -8,7 +8,7 @@
 work by large teams; the configuration is provided in `vanguard_navigation/`.
 Read it, run it, learn to tell when it's misbehaving — then leave it alone.
 
-**Everything else in Task 4 you write yourself**: the reflex that keeps the rover
+**Everything else in Sol 4 you write yourself**: the reflex that keeps the rover
 alive, the client that commands Nav2, and the logic that decides where to go.
 This page is the foundation those sit on, and you will debug them far faster if
 you know what a healthy stack looks like first.
@@ -211,7 +211,7 @@ doorway it fits through easily. That experiment will teach you more than this pa
 
 ## Things to break on purpose
 
-Do this **now**, before you write any of Task 4. Every one of these will happen to
+Do this **now**, before you write any of Sol 4. Every one of these will happen to
 you accidentally later, and recognising it in five seconds instead of an hour is
 the entire return on this page:
 
@@ -248,7 +248,7 @@ manager log.
 (`ros2 topic echo /cmd_vel`). If the plan exists but no velocities flow, the
 controller failed to activate. **Also check the message type.** On our Jazzy stack
 (Nav2 1.3.12) `/cmd_vel` is `geometry_msgs/msg/Twist`, which matches the bridge
-line from Task 2 — but newer Nav2 releases switched to `TwistStamped`, and if the
+line from Sol 2 — but newer Nav2 releases switched to `TwistStamped`, and if the
 two ends disagree the messages vanish with no error at all. Confirm with:
 
 ```bash
@@ -266,4 +266,4 @@ RViz only.
 
 ---
 
-Back to the Task 4 sheet.
+Back to the Sol 4 sheet.

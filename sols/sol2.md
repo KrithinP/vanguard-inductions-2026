@@ -1,4 +1,4 @@
-# 🛰 TASK 2 — "Rolling Chassis"
+# 🛰 SOL 2 — "Rolling Chassis"
 
 > **Objective:** build the rover, put it in the world, and drive it.
 > **Effort:** 6–8 hours.
@@ -105,7 +105,7 @@ What broke, what you worked out, what still doesn't make sense.
 
 | | |
 |---|---|
-| `src/task2/` | rover description, launch files, your driving node |
+| `src/sol2/` | rover description, launch files, your driving node |
 | screenshot | RViz showing the rover and its TF tree |
 | `MISSION_LOG.md` | updated, including your final position error |
 | video | under 90 s — rover driving its square in Gazebo |

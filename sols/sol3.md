@@ -1,4 +1,4 @@
-# 🛰 TASK 3 — "Eyes"
+# 🛰 SOL 3 — "Eyes"
 
 > **Objective:** give the rover a camera, and teach it to recognise where it is
 > from what it sees.
@@ -26,7 +26,7 @@ This Sol, you give the rover eyes.
 
 ---
 
-> **A step up.** Task 1 handed you a working node to copy. From here the handbook
+> **A step up.** Sol 1 handed you a working node to copy. From here the handbook
 > gives you the API, the message formats and the traps — **you write the node.**
 > That is the point: working from a description rather than an example is most of
 > the job.
@@ -124,7 +124,7 @@ interested in are the people who measured it and can say *why*.
 
 | | |
 |---|---|
-| `src/task3/` | camera setup, detection node, pose estimation |
+| `src/sol3/` | camera setup, detection node, pose estimation |
 | detector output | what your detector found on all six test images |
 | screenshot | RViz with marker frames placed in 3-D |
 | `MISSION_LOG.md` | updated, including measured vs. estimated distance |
