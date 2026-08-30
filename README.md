@@ -125,7 +125,7 @@ window.** Don't commit video files.
 | | |
 |---|---|
 | **Opens** | 30 August 2026 |
-| **Everything due** | **23 September 2026, 23:59 IST** |
+| **Everything due** | **21 September 2026, 23:59 IST** |
 
 ## How you'll be judged
 
