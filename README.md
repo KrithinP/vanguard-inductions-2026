@@ -140,8 +140,9 @@ one everything else stands on.
 properly, is a perfectly good submission — and beats all four with code you can't
 explain. Mission 4 is bonus: it can only add, never subtract.
 
-We'll release a step-by-step PDF for each mission as the induction goes on. You
-don't have to wait for it — everything the PDFs contain is already in
+**Printable guides live in [`tasks/`](tasks/).** We hand these out one at a time
+over WhatsApp, and every one we've sent so far is in that folder — so if you joined
+the group late, you haven't missed anything. Everything in them is also in
 [`handbook/`](handbook/).
 
 Each mission tells you which parts of [`handbook/`](handbook/) you need.
