@@ -16,7 +16,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       git nano vim less tree \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir --break-system-packages opencv-contrib-python
+# OpenCV, then numpy pinned back below 2.
+# ROS 2 Jazzy's cv_bridge is compiled against NumPy 1.x. The opencv wheel drags in
+# NumPy 2.x, which makes cv_bridge.imgmsg_to_cv2 raise ImportError at runtime.
+# Order matters: install opencv first, then force numpy back down.
+RUN pip install --no-cache-dir --break-system-packages opencv-contrib-python \
+ && pip install --no-cache-dir --break-system-packages "numpy<2"
 
 # NOTE: rosdep is deliberately NOT initialised here. At build time it fetches
 # several raw.githubusercontent.com URLs and stalls for minutes (or fails

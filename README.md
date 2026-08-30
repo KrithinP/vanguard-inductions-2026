@@ -1,197 +1,167 @@
-<div align="center">
-
-# 🛰 PROJECT VANGUARD
-### Autonomous Subsystem — Induction 2026
+# 🛰 PROJECT VANGUARD — Autonomous Subsystem Induction 2026
 
 **BITS Pilani Hyderabad · Mars Rover Team**
 
-</div>
+---
+
+> On Mars, a radio message takes between four and twenty-four minutes to make the
+> round trip. Real-time driving is impossible. Every move the rover makes, it
+> decides for itself.
+>
+> That software is what this subsystem builds. This induction is how you learn to
+> write it.
 
 ---
 
-> **MISSION LOG — SOL 1, 06:14 LOCAL**
->
-> The rover survived descent. Barely.
->
-> Telemetry is intermittent, the flight computer took a hit on the way down, and
-> the mission directory came back corrupted. Somewhere in that wreckage is the
-> authentication phrase we need to bring the vehicle back online.
->
-> We're 400 million kilometres from the nearest person who could fix this by hand.
-> Round-trip radio is between four and twenty-four minutes, so there is no such
-> thing as real-time control. Whatever this rover does next, it decides for itself.
->
-> That's your job now. Wake it up.
+## Contents
+
+1. [What you need](#what-you-need)
+2. [Set up](#set-up)
+3. [Your missions](#your-missions)
+4. [Submitting](#submitting)
+5. [How you'll be judged](#how-youll-be-judged)
+6. [Using AI](#using-ai)
+7. [Asking for help](#asking-for-help)
 
 ---
-
-## What this is
-
-The induction for the **Autonomous Subsystem** of Project Vanguard — the software
-that lets our Mars rover think for itself. We build the perception, localisation
-and navigation that lets a machine cross terrain nobody has mapped, without
-anyone driving it.
-
-This induction runs over roughly four weeks. **Missions are released one at a
-time.** You'll get the next one when the current one closes — same as a real
-mission, where you fly what's in front of you and the next phase is planned while
-you're still flying this one.
-
-**You are not expected to already know any of this.** The handbook assumes you
-have never opened a terminal. If you can follow instructions carefully and stay
-curious when things break, you can do this.
 
 ## What you need
 
-- A laptop with **8 GB RAM** and ~20 GB free (60 GB if you install Ubuntu directly).
-- A **GitHub account**. ([Sign up](https://github.com/signup) — use your institute
-  email, it gets you free Pro.)
-- Roughly **6–8 hours a week**. It's a real commitment; we'd rather you knew now.
+- A laptop with **8 GB RAM** and ~20 GB free (60 GB to install Ubuntu directly).
+- A **GitHub account** — [sign up](https://github.com/signup) with your institute
+  email for free Pro.
+- About **6–8 hours a week**. It's a real commitment.
 
-You do **not** need prior Linux, ROS, robotics or Python experience. You do **not**
-need to already be running Ubuntu.
+**No prior Linux, ROS, robotics or Python experience is assumed.** The handbook
+starts from "what is a terminal".
 
-### Two ways to run this — both fully supported
-
-| | Who it's for | Setup |
-|---|---|---|
-| 🐳 **Docker** | **Windows 10/11, macOS (including Apple Silicon), any Linux.** No dual boot, no partitioning, no risk to your existing system. | [`docker/README.md`](docker/README.md) |
-| 🐧 **Ubuntu 24.04 natively** | Dual boot or a spare machine. Faster simulation, and it's what the team runs. | [`handbook/00`](handbook/00-install-ubuntu.md) |
-
-**Neither route is penalised.** Docker gets you a full Ubuntu desktop in your
-browser and everything in this induction works there. Native is faster and closer
-to the team's day-to-day, but it asks more of your laptop and your nerve.
-
-If you're on Windows or a Mac and unsure: **use Docker.** Start there, and switch
-later if you want to.
-
-## Start here
+## Set up
 
 ### 1. Fork this repository
 
-Click **Fork**, top right. That gives you your own copy to work in.
+**Fork**, top right. That gives you your own copy to work in.
 
-### 2. Clone it to your machine
+### 2. Clone it
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/vanguard-inductions-2026.git
 cd vanguard-inductions-2026
 ```
 
-(If `git` isn't installed yet, that's fine — [`handbook/00`](handbook/00-install-ubuntu.md)
-gets you there first.)
+### 3. Tell git who you are
 
-**Then tell git who you are.** On a fresh machine it doesn't know, and it will
-refuse to let you commit anything until you say:
+On a fresh machine git doesn't know, and won't let you commit until you say:
 
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 ```
 
-Use the email on your GitHub account, or your commits won't be linked to you.
+### 4. Pick a callsign
 
-### 3. Pick a callsign
-
-Flight controllers go by callsign, not name. Pick yours — 3 to 16 characters,
-letters and numbers, upper case. Make it something you'd be happy to see on a
-scoreboard.
+Flight controllers go by callsign, not name. 3–16 characters, letters and numbers,
+upper case. This is what appears on the progress board — **your real name doesn't.**
 
 ```bash
 echo "NIGHTJAR" > callsign.txt
 ```
 
-This is what appears on the public progress board. **Your real name stays off it.**
+### 5. Get an environment
 
-### 4. Read the mission
+Two routes, **both fully supported**:
 
-**→ [`sols/`](sols/README.md) — your current mission**
+| | For | Start at |
+|---|---|---|
+| 🐳 **Docker** | Windows 10/11, macOS (incl. Apple Silicon), any Linux. No dual boot, nothing touches your partitions. | [`docker/README.md`](docker/README.md) |
+| 🐧 **Ubuntu 24.04** | Dual boot or a spare machine. Faster, and what the team runs. | [`handbook/00`](handbook/00-install-ubuntu.md) |
 
-The handbook in [`handbook/`](handbook/) walks you through everything the mission
-needs, from installing Ubuntu to writing your first ROS 2 node. Read it in order.
+On Windows or a Mac and unsure? **Use Docker.**
 
-## Submitting
-
-1. Work on your fork, committing as you go. **Small, frequent commits with real
-   messages** — `add velocity publisher`, not `stuff`. We look at this.
-2. When you're done, open a **Pull Request** to this repository's `main`.
-3. **PR title:** `NAME [ID_NUMBER]` — e.g. `Ada Lovelace [2026A7PS0042H]`
-4. Fill in the template.
-5. One PR per person. Keep pushing to it as the induction proceeds — the same PR
-   carries all your work.
-
-Every push runs an automatic **flight readiness poll** and reports GO / NO-GO on
-each part of the mission. It's there so you can fix things before a human ever
-looks. Check the Actions tab on your fork.
-
-Run the same checks locally any time:
+Check yourself at any point:
 
 ```bash
 ./tools/vanguard doctor    # is my machine set up correctly?
 ./tools/vanguard check     # is the current mission complete?
 ```
 
-## Dates
+## Your missions
+
+**→ [`sols/`](sols/README.md)**
+
+Missions are released one at a time through the induction — you'll get the next
+when the current one closes, the same way a real mission flies what's in front of
+it while the next phase is still being planned.
+
+Each mission tells you which parts of [`handbook/`](handbook/) you need.
+
+## Submitting
+
+1. Work on your fork, committing as you go. **Small, frequent commits with real
+   messages** — `add velocity publisher`, not `stuff`. We read these.
+2. Open **one Pull Request** to this repository's `main`, titled
+   `NAME [ID_NUMBER]` — e.g. `Ada Lovelace [2026A7PS0042H]`.
+3. Keep pushing to that same PR as the induction goes on. One PR carries all your
+   work.
+
+Every push runs an automatic **flight readiness poll** that reports GO / NO-GO on
+each part of the current mission — so you can fix things before a human looks.
+It's in the Actions tab of your fork.
+
+Each mission also asks for a **short screen recording, under 90 seconds**, with one
+thing explained out loud. Link it in your PR; don't commit video files.
 
 | | |
 |---|---|
 | **Induction opens** | 30 August 2026 |
 | **Everything due** | **23 September 2026, 23:59 IST** |
 
-Missions are released through that window. Your single Pull Request carries all
-your work — keep pushing to it until the deadline.
-
-## Who's evaluating you
-
-**Krithin Poola** — Autonomous Lead, Project Vanguard.
-Questions go in [Issues](../../issues/new/choose), where everyone can see the answer.
-
 ## How you'll be judged
 
-Not on completion. Roughly, in order:
+Not on how much you finish. Roughly, in order:
 
-- **Understanding** — can you explain why your code works? Shortlisted recruits
-  get a short walkthrough where we ask you to modify it live.
+- **Understanding** — can you explain why your code works? Shortlisted recruits get
+  a short walkthrough where we ask you to modify it live.
 - **Correctness** — does it do the thing?
 - **Engineering** — readable code, honest commits.
 - **Honesty** — a clear account of what broke is worth more than pretending it didn't.
 
-**Getting stuck is not failure. Hiding it is.** Every one of us has lost a weekend
-to a missing `source` line.
+**Finishing only the first mission, and understanding it, beats finishing them all
+with code you can't explain.**
+
+Getting stuck is not failure. Hiding it is. Every one of us has lost a weekend to a
+missing `source` line.
 
 ## Using AI
 
-You **may** use Claude, ChatGPT, Copilot — we're an AI-leveraged team and pretending
-otherwise would be silly.
+You **may** use Claude, ChatGPT, Copilot — we're an AI-leveraged team and
+pretending otherwise would be silly.
 
 One rule: **you must understand every line you submit.** In the walkthrough we'll
 ask you to explain your code and change it in front of us. If you can't, it doesn't
-count, no matter how well it runs. Use AI to learn faster, not to think less.
+count, however well it runs. Use AI to learn faster, not to think less.
 
 ## Asking for help
 
 Questions go in **[Issues](../../issues/new/choose)**, not DMs. Public, searchable,
 answered once — and someone after you will hit the same wall.
 
-**Asking a good question is a skill we are explicitly looking for.** Include what
+**Asking a good question is a skill we're explicitly looking for.** Include what
 you tried, the exact command, the full error, and your `vanguard doctor` output.
+
+**Evaluator:** Krithin Poola — Autonomous Lead, Project Vanguard.
+
+---
 
 ## One more thing
 
-Somewhere in this repository is something we haven't mentioned anywhere.
-
-It isn't part of any mission and nothing tells you where to look. Find it, open an
-Issue saying what it says, and there are **brownie points** in it for you — plus
-our genuine respect.
+Somewhere in this repository is something we haven't mentioned anywhere. It isn't
+part of any mission and nothing tells you where to look. Find it, open an Issue
+saying what it says, and there are **brownie points** in it for you.
 
 Perseverance's parachute had *Dare Mighty Things* woven into it in binary, and
-Curiosity's wheels stamp "JPL" in Morse code into the dirt of Mars with every turn.
+Curiosity's wheels stamp "JPL" in Morse into the dirt of Mars with every turn.
 Engineers hide things. Go and be curious.
 
 ---
 
-<div align="center">
-
 *Dare mighty things.*
-
-</div>

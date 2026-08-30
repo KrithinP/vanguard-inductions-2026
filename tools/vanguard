@@ -79,6 +79,13 @@ doctor() {
     else
       ok "OpenCV $(python3 -c 'import cv2; print(cv2.__version__)' 2>/dev/null)"
     fi
+    NPV=$(python3 -c 'import numpy; print(numpy.__version__)' 2>/dev/null)
+    case "$NPV" in
+      1.*) ok "NumPy $NPV (compatible with cv_bridge)" ;;
+      "")  bad "NumPy missing" "pip install --user --break-system-packages \"numpy<2\"" ;;
+      *)   bad "NumPy $NPV breaks cv_bridge" \
+               "ROS needs NumPy 1.x: pip install --user --break-system-packages \"numpy<2\"" ;;
+    esac
   else
     bad "OpenCV missing" "pip install --user --break-system-packages opencv-contrib-python"
   fi

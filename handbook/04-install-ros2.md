@@ -107,7 +107,18 @@ sudo apt install -y \
   ros-jazzy-teleop-twist-keyboard
 
 pip install --user --break-system-packages opencv-contrib-python
+pip install --user --break-system-packages "numpy<2"
 ```
+
+> ⚠ **Both lines, in that order.** ROS 2's `cv_bridge` is compiled against
+> NumPy 1.x. Installing OpenCV pulls in NumPy 2.x, which breaks `cv_bridge` at
+> runtime with a long `ImportError` about *"a module compiled using NumPy 1.x
+> cannot be run in NumPy 2.x"*. The second line puts NumPy back where ROS expects
+> it. Check with:
+>
+> ```bash
+> python3 -c "import numpy; print(numpy.__version__)"   # must start with 1.
+> ```
 
 Initialise `rosdep` (resolves dependencies when you build):
 
