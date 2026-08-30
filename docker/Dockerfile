@@ -18,7 +18,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN pip install --no-cache-dir --break-system-packages opencv-contrib-python
 
-RUN rosdep init 2>/dev/null || true; rosdep update || true
+# NOTE: rosdep is deliberately NOT initialised here. At build time it fetches
+# several raw.githubusercontent.com URLs and stalls for minutes (or fails
+# outright) on a slow or filtered connection. Nothing here needs it.
 
 RUN echo "source /opt/ros/jazzy/setup.bash" >> /root/.bashrc \
  && echo "[ -f ~/vanguard_ws/install/setup.bash ] && source ~/vanguard_ws/install/setup.bash" >> /root/.bashrc

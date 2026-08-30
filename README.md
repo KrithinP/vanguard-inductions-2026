@@ -43,12 +43,27 @@ curious when things break, you can do this.
 
 ## What you need
 
-- A laptop with ~60 GB free.
+- A laptop with **8 GB RAM** and ~20 GB free (60 GB if you install Ubuntu directly).
 - A **GitHub account**. ([Sign up](https://github.com/signup) — use your institute
   email, it gets you free Pro.)
 - Roughly **6–8 hours a week**. It's a real commitment; we'd rather you knew now.
 
-You do **not** need prior Linux, ROS, robotics or Python experience.
+You do **not** need prior Linux, ROS, robotics or Python experience. You do **not**
+need to already be running Ubuntu.
+
+### Two ways to run this — both fully supported
+
+| | Who it's for | Setup |
+|---|---|---|
+| 🐳 **Docker** | **Windows 10/11, macOS (including Apple Silicon), any Linux.** No dual boot, no partitioning, no risk to your existing system. | [`docker/README.md`](docker/README.md) |
+| 🐧 **Ubuntu 24.04 natively** | Dual boot or a spare machine. Faster simulation, and it's what the team runs. | [`handbook/00`](handbook/00-install-ubuntu.md) |
+
+**Neither route is penalised.** Docker gets you a full Ubuntu desktop in your
+browser and everything in this induction works there. Native is faster and closer
+to the team's day-to-day, but it asks more of your laptop and your nerve.
+
+If you're on Windows or a Mac and unsure: **use Docker.** Start there, and switch
+later if you want to.
 
 ## Start here
 
@@ -106,6 +121,21 @@ Run the same checks locally any time:
 ./tools/vanguard check     # is the current mission complete?
 ```
 
+## Dates
+
+| | |
+|---|---|
+| **Induction opens** | 30 August 2026 |
+| **Everything due** | **27 September 2026, 23:59 IST** |
+
+Missions are released through that window. Your single Pull Request carries all
+your work — keep pushing to it until the deadline.
+
+## Who's evaluating you
+
+**Krithin Poola** — Autonomous Lead, Project Vanguard.
+Questions go in [Issues](../../issues/new/choose), where everyone can see the answer.
+
 ## How you'll be judged
 
 Not on completion. Roughly, in order:
@@ -135,6 +165,18 @@ answered once — and someone after you will hit the same wall.
 
 **Asking a good question is a skill we are explicitly looking for.** Include what
 you tried, the exact command, the full error, and your `vanguard doctor` output.
+
+## One more thing
+
+Somewhere in this repository is something we haven't mentioned anywhere.
+
+It isn't part of any mission, it isn't worth marks, and nothing tells you where to
+look. The first person to find it and open an Issue saying what it says gets a
+mission patch and our genuine respect.
+
+Perseverance's parachute had *Dare Mighty Things* woven into it in binary, and
+Curiosity's wheels stamp "JPL" in Morse code into the dirt of Mars with every turn.
+Engineers hide things. Go and be curious.
 
 ---
 

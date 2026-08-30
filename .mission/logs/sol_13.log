@@ -2,3 +2,5 @@
 [SOL 13] 06:12:09  THM  chassis -43 C · electronics bay -8 C
 [SOL 13] 07:01:55  NAV  odometry drift 0.4 m over 120 m traverse
 [SOL 13] 09:44:12  COM  downlink window closed · 412 MB queued
+[SOL 13] 14:20:31  NAV  wheel tread pattern imprinted in regolith over 40 m traverse
+[SOL 13] 14:20:31  NAV  tread signature: .- -.. / .- ... - .-. .-

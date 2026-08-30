@@ -1,7 +1,9 @@
+# Builds locally on first run — works on Windows, macOS (Intel and Apple Silicon)
+# and Linux, because the base image is multi-arch.
 services:
   vanguard:
-    image: ghcr.io/krithinp/vanguard-inductions-2026:latest
     build: .
+    image: vanguard-induction:latest
     container_name: vanguard
     ports:
       - "8080:80"        # noVNC desktop -> http://localhost:8080

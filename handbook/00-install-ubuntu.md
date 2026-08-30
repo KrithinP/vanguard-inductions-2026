@@ -11,6 +11,17 @@ work *and nobody can help me*".
 
 You have three routes. **Read all three before choosing.**
 
+> ### 🐳 On Windows or a Mac? Read this first.
+>
+> **You do not have to install Ubuntu at all.** Route C runs the whole environment
+> in a container and shows you an Ubuntu desktop in your web browser — on Windows
+> 10/11, on Intel and Apple Silicon Macs, and on any Linux. Nothing touches your
+> disk partitions.
+>
+> It is fully supported and nobody is marked down for using it. If the idea of
+> repartitioning your laptop makes you nervous, **skip to Route C** and get on with
+> the actual robotics.
+
 ---
 
 ## Route A — Dual boot (recommended)
@@ -101,24 +112,42 @@ Enable 3D acceleration in Settings → Display. Then install
 **Guest Additions** from the VM's Devices menu — without it your window won't resize
 and graphics will crawl.
 
-## Route C — Docker (escape hatch)
+## Route C — Docker 🐳
 
-If your laptop simply cannot run A or B, we ship a container with everything
-pre-installed. See [`docker/README.md`](../docker/README.md).
+A full Ubuntu desktop with ROS and Gazebo already installed, running in a
+container, viewed in your browser.
 
-**This is a fallback, not a shortcut.** You will learn less, because installing
-your own environment *is* part of Sol 1. Use it if you're blocked, not to skip ahead.
+**Why:** works on Windows 10/11, macOS (Intel *and* Apple Silicon, natively) and
+Linux. Nothing is repartitioned, nothing is at risk, and setup is two commands.
+This is the route most people on Windows and Mac should take.
+
+**Why not:** simulation renders in software, so it's slower than a native install.
+For this induction that's fine.
+
+**→ [`docker/README.md`](../docker/README.md)**
+
+Two things if you take this route:
+
+1. **Still read the rest of this handbook.** You can skip the install *commands*,
+   but not the concepts — especially [`03`](03-bashrc-path-source.md). We ask about
+   `source` in the walkthrough and the container won't answer for you.
+2. **Mention it in your `MISSION_LOG.md`.** Context for us, not a deduction.
 
 ---
 
 ## Apple Silicon Macs (M1/M2/M3/M4)
 
-Route A doesn't exist for you. Use **Route B** with [UTM](https://mac.getutm.app/)
-and the **arm64** Ubuntu 24.04 ISO, or **Route C**.
+Route A doesn't exist for you. **Route C is the recommended path** — the container
+image is multi-architecture and runs natively on arm64, with no emulation penalty.
+Route B works too, via [UTM](https://mac.getutm.app/) with the **arm64** Ubuntu
+24.04 ISO.
 
 ---
 
 ## Before you move on
+
+*(On Route C, open a terminal on the browser desktop instead of pressing
+`Ctrl+Alt+T`, and expect `24.04` just the same.)*
 
 Boot into Ubuntu, open a terminal (`Ctrl+Alt+T`) and run:
 
