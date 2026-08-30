@@ -1,0 +1,14 @@
+services:
+  vanguard:
+    image: ghcr.io/krithinp/vanguard-inductions-2026:latest
+    build: .
+    container_name: vanguard
+    ports:
+      - "8080:80"        # noVNC desktop -> http://localhost:8080
+    volumes:
+      - ../src:/root/vanguard_ws/src
+    shm_size: "2gb"
+    security_opt:
+      - seccomp:unconfined
+    stdin_open: true
+    tty: true

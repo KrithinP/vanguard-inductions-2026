@@ -1,0 +1,39 @@
+name: Ask a question
+description: Stuck on something? Ask here — not in DMs.
+title: "[Sol N] short description of the problem"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Questions are public so everyone learns from the answer. Asking a good
+        question is a skill we are explicitly looking for.
+
+        **Search the existing issues first** — someone has probably hit this already.
+  - type: textarea
+    id: what
+    attributes:
+      label: What are you trying to do?
+      placeholder: "I'm on handbook/04, trying to install ROS 2 Jazzy."
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen, and what happened instead?
+    validations: { required: true }
+  - type: textarea
+    id: command
+    attributes:
+      label: The exact command you ran, and the full error
+      render: shell
+    validations: { required: true }
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of ./tools/vanguard doctor
+      render: shell
+    validations: { required: true }
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you already tried?
+    validations: { required: true }

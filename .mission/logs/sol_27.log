@@ -1,0 +1,6 @@
+[SOL 27] 06:12:04  PWR  battery 87% · solar array nominal
+[SOL 27] 06:12:09  THM  chassis -43 C · electronics bay -8 C
+[SOL 27] 07:01:55  NAV  odometry drift 0.4 m over 120 m traverse
+[SOL 27] 09:44:12  COM  downlink window closed · 412 MB queued
+[SOL 27] 11:58:00  SYS  *** recovered fragment from corrupted sector ***
+[SOL 27] 11:58:00  SYS  FRAGMENT_1=DARE

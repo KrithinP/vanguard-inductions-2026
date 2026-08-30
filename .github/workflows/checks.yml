@@ -1,0 +1,26 @@
+name: Flight Readiness Poll
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  poll:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    container:
+      image: ros:jazzy-ros-base
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build tooling
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq python3-colcon-common-extensions ros-jazzy-turtlesim >/dev/null
+
+      - name: Run the poll
+        run: ./tools/vanguard check

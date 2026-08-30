@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+# vanguard — environment doctor and self-check for the Project Vanguard induction.
+#
+#   ./tools/vanguard doctor     check your workstation
+#   ./tools/vanguard check      run the checks for the current Sol
+#   ./tools/vanguard flag       help for the authentication step
+set -uo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PASS=0; FAIL=0; WARN=0
+G="\033[32m"; R="\033[31m"; Y="\033[33m"; B="\033[1m"; N="\033[0m"
+
+ok()   { printf "  ${G}GO    ${N} %s\n" "$1"; PASS=$((PASS+1)); }
+bad()  { printf "  ${R}NO-GO ${N} %s\n     ↳ %s\n" "$1" "$2"; FAIL=$((FAIL+1)); }
+warn() { printf "  ${Y}HOLD  ${N} %s\n     ↳ %s\n" "$1" "$2"; WARN=$((WARN+1)); }
+
+have() { command -v "$1" >/dev/null 2>&1; }
+
+doctor() {
+  printf "\n${B}VANGUARD WORKSTATION CHECK${N}\n\n"
+
+  printf "${B}Operating system${N}\n"
+  if [ -r /etc/os-release ]; then
+    . /etc/os-release
+    case "${VERSION_ID:-}" in
+      24.04) ok "Ubuntu 24.04 LTS" ;;
+      22.04) warn "Ubuntu 22.04 (team standard is 24.04)" \
+                  "Works for Sol 1, but ROS 2 Jazzy needs 24.04. Plan to upgrade." ;;
+      *)     bad "Ubuntu ${VERSION_ID:-unknown}" \
+                 "This induction targets Ubuntu 24.04 LTS. See handbook/00-install-ubuntu.md" ;;
+    esac
+  else
+    bad "Cannot read /etc/os-release" "Are you on Linux? See handbook/00-install-ubuntu.md"
+  fi
+
+  printf "\n${B}Core tools${N}\n"
+  for t in git python3 pip3 curl; do
+    have "$t" && ok "$t installed" || bad "$t missing" "sudo apt install -y $t"
+  done
+
+  printf "\n${B}Git identity${N}\n"
+  if [ -n "$(git config --global user.name 2>/dev/null)" ]; then
+    ok "git user.name = $(git config --global user.name)"
+  else
+    bad "git user.name not set" 'git config --global user.name "Your Name"'
+  fi
+  if [ -n "$(git config --global user.email 2>/dev/null)" ]; then
+    ok "git user.email = $(git config --global user.email)"
+  else
+    bad "git user.email not set" 'git config --global user.email "you@example.com"'
+  fi
+
+  printf "\n${B}ROS 2${N}\n"
+  if [ -d /opt/ros/jazzy ]; then
+    ok "ROS 2 Jazzy installed at /opt/ros/jazzy"
+  else
+    bad "ROS 2 Jazzy not found" "See handbook/04-install-ros2.md"
+  fi
+  if [ "${ROS_DISTRO:-}" = "jazzy" ]; then
+    ok "ROS_DISTRO=jazzy (this shell is sourced)"
+  else
+    bad "ROS_DISTRO not set in this shell" \
+        "Run: source /opt/ros/jazzy/setup.bash — and see handbook/03-bashrc-path-source.md"
+  fi
+  have colcon && ok "colcon installed" \
+    || bad "colcon missing" "sudo apt install -y python3-colcon-common-extensions"
+  have rosdep && ok "rosdep installed" \
+    || warn "rosdep missing" "sudo apt install -y python3-rosdep"
+
+  printf "\n${B}Simulation & vision toolchain${N}\n"
+  have gz && ok "Gazebo ($(gz --version 2>/dev/null | head -1))" \
+    || bad "Gazebo Harmonic missing" "sudo apt install -y ros-jazzy-ros-gz"
+  [ -d /opt/ros/jazzy/share/rviz2 ] && ok "RViz2 installed" \
+    || bad "RViz2 missing" "sudo apt install -y ros-jazzy-desktop"
+  if python3 -c 'import cv2' 2>/dev/null; then
+    if pip list 2>/dev/null | grep -q '^opencv-python '; then
+      bad "wrong OpenCV build installed (opencv-python)" \
+          "pip uninstall -y opencv-python && pip install --user --break-system-packages opencv-contrib-python"
+    else
+      ok "OpenCV $(python3 -c 'import cv2; print(cv2.__version__)' 2>/dev/null)"
+    fi
+  else
+    bad "OpenCV missing" "pip install --user --break-system-packages opencv-contrib-python"
+  fi
+
+  printf "\n${B}Workspace${N}\n"
+  if [ -d "$HOME/vanguard_ws/src" ]; then
+    ok "~/vanguard_ws/src exists"
+  else
+    warn "~/vanguard_ws/src not found" "See handbook/06-workspace-and-packages.md"
+  fi
+
+  printf "\n${B}%d GO · %d HOLD · %d NO-GO${N}\n\n" "$PASS" "$WARN" "$FAIL"
+  if [ "$FAIL" -gt 0 ]; then
+    printf "Not flight-ready yet. Fix the NO-GO lines above, top to bottom.\n"
+    printf "Stuck? Open an Issue — paste this whole output into it.\n\n"
+    return 1
+  fi
+  printf "Workstation is flight-ready. \xf0\x9f\x9b\xb0\n\n"
+}
+
+case "${1:-doctor}" in
+  doctor) doctor ;;
+  check)
+    latest=$(ls "$ROOT"/tools/checks/sol*.sh 2>/dev/null | sort | tail -1)
+    [ -n "$latest" ] && bash "$latest" || echo "No checks available yet."
+    ;;
+  flag)
+    cat <<'HELP'
+Assemble the three fragments from .mission/ into one phrase, joined by hyphens
+and in UPPER CASE, then hash it together with your callsign:
+
+    echo -n "FRAGMENT1-FRAGMENT2-FRAGMENT3:YOURCALLSIGN" | sha256sum | cut -c1-16
+
+Write the 16-character result into FLAG.txt at the repo root.
+Your callsign must match callsign.txt exactly (upper case).
+HELP
+    ;;
+  *) echo "usage: vanguard [doctor|check|flag]" ;;
+esac

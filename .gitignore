@@ -1,0 +1,18 @@
+build/
+install/
+log/
+__pycache__/
+*.pyc
+*.egg-info/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Recovered mission data — extract it, don't commit it
+recovered.txt
+
+# Keep the repo light: link recordings, never commit them
+*.mp4
+*.mkv
+*.webm
