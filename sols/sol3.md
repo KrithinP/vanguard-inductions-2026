@@ -10,6 +10,12 @@
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
+> **This is the brief** — what to build and what to hand in. It links to the
+> handbook chapters you'll need as you go.
+>
+> **The PDF version has the whole task in one file** — this brief plus every
+> handbook chapter it depends on, bundled inline: `sols/sol3-vision.pdf`.
+
 > **Objective:** give the rover a camera, and teach it to recognise where it is
 > from what it sees.
 > **Effort:** 6–8 hours.

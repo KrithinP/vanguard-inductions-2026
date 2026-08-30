@@ -10,6 +10,12 @@
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
+> **This is the brief** — what to build and what to hand in. It links to the
+> handbook chapters you'll need as you go.
+>
+> **The PDF version has the whole task in one file** — this brief plus every
+> handbook chapter it depends on, bundled inline: `sols/sol4-autonomy.pdf`.
+
 > **The hard one.** Optional, and it can only add to your evaluation — but this is
 > the task that tells us who you are as an engineer.
 > **Effort:** 12–18 hours. Do not start this three days before the deadline.

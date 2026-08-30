@@ -52,7 +52,10 @@ These are the tasks. Do them in order.
 **Sols 1–3 are compulsory. Sol 4 is a bonus** — it can only add to your
 evaluation, never subtract, and finishing it earns serious brownie points.
 
-Printable PDFs in [`sols/`](sols/README.md).
+Each `.md` above is the **brief** — what to build and what to hand in — and links
+to the [`handbook/`](handbook/) chapters you need. The **PDFs in
+[`sols/`](sols/README.md) contain the entire task in one file**: the brief plus
+every handbook chapter it depends on, bundled inline. Use whichever suits you.
 
 > ### It looks like a lot. It isn't as bad as it looks.
 >

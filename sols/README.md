@@ -20,7 +20,22 @@ evaluation, never subtract, and finishing it earns serious brownie points.
 
 ---
 
-The Markdown and the PDF are the same thing; the PDF is for reading offline.
+## The `.md` is the brief. The PDF is the whole thing.
+
+They are **not** the same document:
+
+| | |
+|---|---|
+| **`solN.md`** | The **brief** — what to build, what to hand in. It links out to the [`handbook/`](../handbook/) chapters you'll need. |
+| **PDF** | The **entire task in one file** — the same brief, plus every handbook chapter it depends on, bundled inline and in order. |
+
+So the Markdown is a page or two; the PDF is 13–27 pages. Nothing is missing from
+the Markdown — it just points at the handbook instead of including it.
+
+**Read the PDF if you want one self-contained document** to work through, or
+something you can read offline or print. **Read the Markdown if you'd rather stay
+in the browser** and click through to the handbook as you go. Either works.
+
 Only Sol 1 differs by operating system.
 
 The help thins out as you go. Sol 1 hands you a working example. By Sol 4 you get

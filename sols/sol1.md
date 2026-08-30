@@ -10,6 +10,12 @@
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
+> **This is the brief** — what to build and what to hand in. It links to the
+> handbook chapters you'll need as you go.
+>
+> **The PDF version has the whole task in one file** — this brief plus every
+> handbook chapter it depends on, bundled inline: `sols/sol1-windows.pdf / sol1-macos.pdf / sol1-linux.pdf`.
+
 > **Objective:** bring a workstation online, recover the mission authentication
 > phrase, and put the rover's first command on the wire.
 > **Effort:** 6–8 hours. Spread it over days — do not start this the night before.
