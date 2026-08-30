@@ -24,7 +24,7 @@ evaluation, never subtract, and finishing it earns serious brownie points.
 
 They are **not** the same document:
 
-| | |
+| File | What's in it |
 |---|---|
 | **`solN.md`** | The **brief** — what to build, what to hand in. It links out to the [`handbook/`](../handbook/) chapters you'll need. |
 | **PDF** | The **entire task in one file** — the same brief, plus every handbook chapter it depends on, bundled inline and in order. |
