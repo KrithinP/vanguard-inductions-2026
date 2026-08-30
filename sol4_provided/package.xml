@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>sol4_provided</name>
+  <version>1.0.0</version>
+  <description>Provided SLAM and Nav2 configuration for the bonus mission.</description>
+  <maintainer email="noreply@example.com">Project Vanguard</maintainer>
+  <license>MIT</license>
+  <exec_depend>slam_toolbox</exec_depend>
+  <exec_depend>nav2_controller</exec_depend>
+  <exec_depend>nav2_planner</exec_depend>
+  <exec_depend>nav2_behaviors</exec_depend>
+  <exec_depend>nav2_bt_navigator</exec_depend>
+  <exec_depend>nav2_velocity_smoother</exec_depend>
+  <exec_depend>nav2_lifecycle_manager</exec_depend>
+  <exec_depend>nav2_map_server</exec_depend>
+  <export><build_type>ament_python</build_type></export>
+</package>

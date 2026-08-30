@@ -1,0 +1,161 @@
+# Nav2 for the Vanguard rover — provided, and deliberately minimal.
+#
+# You are NOT asked to tune this. Read it, run it, and be able to explain the
+# costmap sections: they are what the bonus mission's write-up asks about.
+
+bt_navigator:
+  ros__parameters:
+    use_sim_time: true
+    global_frame: map
+    robot_base_frame: base_link
+    odom_topic: /odom
+    # The behaviour tree decides the ORDER of everything: plan, follow, and what
+    # to do when that fails. Nav2 is a tree of behaviours, not one algorithm.
+    default_nav_to_pose_bt_xml: ""
+
+controller_server:
+  ros__parameters:
+    use_sim_time: true
+    controller_frequency: 20.0
+    min_x_velocity_threshold: 0.001
+    min_theta_velocity_threshold: 0.001
+    progress_checker_plugins: ["progress_checker"]
+    goal_checker_plugins: ["goal_checker"]
+    controller_plugins: ["FollowPath"]
+
+    progress_checker:
+      plugin: "nav2_controller::SimpleProgressChecker"
+      required_movement_radius: 0.5
+      movement_time_allowance: 15.0
+
+    goal_checker:
+      plugin: "nav2_controller::SimpleGoalChecker"
+      xy_goal_tolerance: 0.25      # "close enough" in metres
+      yaw_goal_tolerance: 0.4      # and in radians
+      stateful: true
+
+    # DWB: simulate many short candidate trajectories each cycle, score them,
+    # drive the best one. The critics below ARE the scoring.
+    FollowPath:
+      plugin: "dwb_core::DWBLocalPlanner"
+      min_vel_x: 0.0
+      max_vel_x: 0.5
+      max_vel_theta: 1.0
+      acc_lim_x: 2.5
+      acc_lim_theta: 3.2
+      vx_samples: 20
+      vtheta_samples: 20
+      sim_time: 1.5                # how far ahead each candidate is simulated
+      critics: ["RotateToGoal", "Oscillation", "BaseObstacle",
+                "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
+      BaseObstacle.scale: 0.02     # penalise being near obstacles
+      PathAlign.scale: 32.0        # penalise being off the global path
+      GoalDist.scale: 24.0         # reward getting closer to the goal
+
+# --- LOCAL COSTMAP ---------------------------------------------------------
+# A small window that MOVES WITH THE ROBOT. Rebuilt constantly from live sensor
+# data. It's what the controller steers around, so it must be cheap and current.
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      use_sim_time: true
+      update_frequency: 5.0
+      publish_frequency: 2.0
+      global_frame: odom           # odom, not map: smooth, no jumps
+      robot_base_frame: base_link
+      rolling_window: true         # <- the window follows the robot
+      width: 4
+      height: 4
+      resolution: 0.05
+      robot_radius: 0.35
+      plugins: ["obstacle_layer", "inflation_layer"]
+
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan
+        scan:
+          topic: /scan
+          max_obstacle_height: 2.0
+          clearing: true
+          marking: true
+          data_type: "LaserScan"
+          raytrace_max_range: 12.0
+          obstacle_max_range: 10.0
+
+      # Grow every obstacle by the robot's radius, so the planner can treat the
+      # robot as a POINT. This is why the coloured bands are wider than the wall.
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.55
+
+# --- GLOBAL COSTMAP --------------------------------------------------------
+# The whole known world, built on the SLAM map. Updated slowly. It's what the
+# planner uses to work out a route from here to the goal.
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      use_sim_time: true
+      update_frequency: 1.0
+      publish_frequency: 1.0
+      global_frame: map            # map, not odom: doesn't drift
+      robot_base_frame: base_link
+      robot_radius: 0.35
+      resolution: 0.05
+      track_unknown_space: true    # unknown is NOT the same as free
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
+
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_subscribe_transient_local: true
+
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan
+        scan:
+          topic: /scan
+          max_obstacle_height: 2.0
+          clearing: true
+          marking: true
+          data_type: "LaserScan"
+          raytrace_max_range: 12.0
+          obstacle_max_range: 10.0
+
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.55
+
+planner_server:
+  ros__parameters:
+    use_sim_time: true
+    expected_planner_frequency: 1.0
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_navfn_planner::NavfnPlanner"
+      tolerance: 0.5
+      use_astar: false            # Dijkstra by default; try true and compare
+      allow_unknown: true         # <- worth thinking about. See the write-up.
+
+behavior_server:
+  ros__parameters:
+    use_sim_time: true
+    local_frame: odom
+    global_frame: map
+    robot_base_frame: base_link
+    behavior_plugins: ["spin", "backup", "wait"]
+    spin:
+      plugin: "nav2_behaviors::Spin"
+    backup:
+      plugin: "nav2_behaviors::BackUp"
+    wait:
+      plugin: "nav2_behaviors::Wait"
+
+velocity_smoother:
+  ros__parameters:
+    use_sim_time: true
+    smoothing_frequency: 20.0
+    max_velocity: [0.5, 0.0, 1.0]
+    min_velocity: [-0.5, 0.0, -1.0]

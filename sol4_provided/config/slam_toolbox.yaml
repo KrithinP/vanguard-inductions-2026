@@ -1,0 +1,44 @@
+# slam_toolbox — online asynchronous SLAM.
+# Provided for you. You are not expected to tune this; you ARE expected to be
+# able to say roughly what the important lines do.
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: true
+
+    # --- frames -----------------------------------------------------------
+    # SLAM publishes map -> odom. Your simulator already publishes
+    # odom -> base_link. Together those place the robot on the map.
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /scan
+
+    mode: mapping              # 'mapping' builds a map; 'localization' uses a saved one
+
+    # --- how often to do work --------------------------------------------
+    resolution: 0.05           # metres per map cell. Smaller = finer, slower, more memory.
+    max_laser_range: 12.0      # ignore returns beyond this
+    minimum_time_interval: 0.5 # don't process scans faster than this
+    transform_publish_period: 0.02
+    map_update_interval: 1.0
+
+    # --- when to record a new keyframe ------------------------------------
+    # A new "snapshot" is stored once the robot has moved this far or turned
+    # this much. Too small and the map bloats; too large and it loses detail.
+    minimum_travel_distance: 0.3
+    minimum_travel_heading: 0.3
+
+    # --- loop closure -----------------------------------------------------
+    # Recognising a place you've already been, and correcting accumulated
+    # drift. This is what stops long corridors bending.
+    do_loop_closing: true
+    loop_search_maximum_distance: 3.0
+    loop_match_minimum_chain_size: 10
+    loop_match_minimum_response_coarse: 0.35
+    loop_match_minimum_response_fine: 0.45
+
+    # --- scan matching ----------------------------------------------------
+    use_scan_matching: true
+    correlation_search_space_dimension: 0.5
+    correlation_search_space_resolution: 0.01
+    correlation_search_space_smear_deviation: 0.1

@@ -27,6 +27,14 @@ RUN pip install --no-cache-dir --break-system-packages opencv-contrib-python \
 # several raw.githubusercontent.com URLs and stalls for minutes (or fails
 # outright) on a slow or filtered connection. Nothing here needs it.
 
+# Navigation and mapping stack (needed by the bonus mission; installed up front so
+# nobody has to rebuild mid-induction).
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      ros-jazzy-slam-toolbox \
+      ros-jazzy-navigation2 \
+      ros-jazzy-nav2-bringup \
+ && rm -rf /var/lib/apt/lists/*
+
 RUN echo "source /opt/ros/jazzy/setup.bash" >> /root/.bashrc \
  && echo "[ -f ~/vanguard_ws/install/setup.bash ] && source ~/vanguard_ws/install/setup.bash" >> /root/.bashrc
 

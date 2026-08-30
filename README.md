@@ -43,9 +43,7 @@ Two clicks, top right, and both are useful to you:
 
 - ⭐ **Star** — tells us how many people are actually taking part, which is how we
   decide how much support to staff. Takes a second and genuinely helps.
-- 👁 **Watch → All Activity** — **this is how you find out when a new mission is
-  released.** Missions drop through the induction with no fixed timetable. If you
-  aren't watching, you will miss one.
+- 👁 **Watch → All Activity** — you'll see any fixes or clarifications we push.
 
 ### 1. Fork this repository
 
@@ -98,21 +96,26 @@ Check yourself at any point:
 
 **→ [`sols/`](sols/README.md)**
 
-Missions are released one at a time through the induction — you'll get the next
-when the current one closes, the same way a real mission flies what's in front of
-it while the next phase is still being planned.
+**All four missions are here from the start.** Nothing unlocks, nothing is
+timed, and joining late costs you nothing.
 
-**When a new one drops, pull it into your fork:**
+| | Mission | |
+|---|---|---|
+| **1** | [Boot Sequence](sols/sol1/README.md) | setup, the terminal, ROS 2, your first node |
+| **2** | [Rolling Chassis](sols/sol2/README.md) | build the rover and drive it |
+| **3** | [Eyes](sols/sol3/README.md) | camera, markers, where things are in 3-D |
+| **4** | [The World Model](sols/sol4/README.md) | ⭐ **bonus** — sensors, maps, navigation |
 
-```bash
-git remote add upstream https://github.com/KrithinP/vanguard-inductions-2026.git   # once
-git fetch upstream
-git merge upstream/main
-```
+**Do them in order.** Each one builds directly on the last, and Mission 1 is the
+one everything else stands on.
 
-Your fork does not update by itself. If you've never merged before, this is a good
-first time — and if you hit a conflict, that's a normal part of the job, not a
-disaster. Ask in Issues.
+**You are not expected to finish all of them.** Mission 1 alone, understood
+properly, is a perfectly good submission — and beats all four with code you can't
+explain. Mission 4 is bonus: it can only add, never subtract.
+
+We'll release a step-by-step PDF for each mission as the induction goes on. You
+don't have to wait for it — everything the PDFs contain is already in
+[`handbook/`](handbook/).
 
 Each mission tells you which parts of [`handbook/`](handbook/) you need.
 
