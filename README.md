@@ -12,11 +12,41 @@
 
 ---
 
-This repository is your **working environment**: the setup guide, the reference
-handbook, the tooling, and the assets you'll need.
+Everything you need is in this repository: the four tasks, a reference handbook
+that starts from *what is a terminal*, a zero-install environment, and tooling
+that checks your work before a human ever sees it.
 
-**Task sheets are sent to you directly as PDFs** — and every one that's gone out
-so far is also in [`tasks/`](tasks/), so joining late costs you nothing.
+## The tasks
+
+| | Task | What you'll build | Effort |
+|---|---|---|---|
+| **1** | [Boot Sequence](tasks/task1.md) | A working workstation, and your first ROS 2 node | 6–8 h |
+| **2** | [Rolling Chassis](tasks/task2.md) | A four-wheel rover you can drive in simulation | 6–8 h |
+| **3** | [Eyes](tasks/task3.md) | A camera, and markers located in 3-D | 6–8 h |
+| **4** | [Terra Incognita](tasks/task4.md) | ⭐ **Bonus** — a rover that explores on its own | 12–18 h |
+
+Also as printable PDFs in [`tasks/`](tasks/).
+
+> ### It looks like a lot. It isn't as bad as it looks.
+>
+> **Everything is written out step by step.** Every command is shown with the
+> output you should see, every concept is explained before it's used, and every
+> error we know about has an entry in
+> [`handbook/99-troubleshooting.md`](handbook/99-troubleshooting.md) with the fix.
+>
+> **You write far less code than the page count suggests** — around 30 lines for
+> Task 1. Most of the time in the early tasks goes on getting the environment
+> right, which is why we've written so much about it.
+>
+> **The support gets lighter as you go, on purpose.** Task 1 hands you a working
+> node to copy. Task 2 gives you the pieces to assemble. Task 3 gives you the API
+> and the traps, and you write the node. Task 4 gives you the algorithm in words
+> and you build it. If Task 4 feels hard, that's the design — it's a bonus, and
+> it's meant to stretch the people who want stretching.
+>
+> **You are not expected to finish all four.** Task 1 alone, done properly and
+> understood, is a perfectly good submission — and counts for more than four
+> rushed ones you can't explain. Start at Task 1 and get as far as you get.
 
 ## What you need
 
@@ -101,8 +131,8 @@ haven't started is reported as *not started* and never counts against you.
 
 | | |
 |---|---|
-| [`handbook/`](handbook/) | The reference material, from the terminal up. Task sheets tell you which parts you need. |
-| [`tasks/`](tasks/) | Task sheets as PDFs, added as they go out. |
+| [`tasks/`](tasks/) | The four task sheets, in Markdown and as printable PDFs. |
+| [`handbook/`](handbook/) | The reference material, from the terminal up. Each task tells you which parts you need. |
 | [`docker/`](docker/) | The zero-install environment. |
 | [`tools/`](tools/) | `vanguard doctor` and the readiness check. |
 | [`markers/`](markers/) | Reference images used by one of the tasks. |

@@ -131,152 +131,111 @@ and it must match reality exactly.
 
 ## Detecting
 
+**From here on you write the code.** Task 1 handed you a working node to copy;
+this one gives you the API and the traps, and you assemble it. That step up is
+deliberate.
+
+### The calls you need
+
 ```python
-import cv2
-import numpy as np
-import rclpy
-from rclpy.node import Node
-from sensor_msgs.msg import Image, CameraInfo
-from cv_bridge import CvBridge
+aruco      = cv2.aruco
+dictionary = aruco.getPredefinedDictionary(aruco.DICT_4X4_50)
+detector   = aruco.ArucoDetector(dictionary, aruco.DetectorParameters())
 
-
-class MarkerDetector(Node):
-    def __init__(self):
-        super().__init__('marker_detector')
-        self.bridge = CvBridge()
-        self.K = None
-        self.dist = None
-
-        aruco = cv2.aruco
-        self.dictionary = aruco.getPredefinedDictionary(aruco.DICT_4X4_50)
-        self.detector = aruco.ArucoDetector(self.dictionary,
-                                            aruco.DetectorParameters())
-
-        self.create_subscription(CameraInfo, '/camera/camera_info',
-                                 self.on_info, 10)
-        self.create_subscription(Image, '/camera/image_raw',
-                                 self.on_image, 10)
-        self.debug_pub = self.create_publisher(Image, '/markers/debug', 10)
-
-    def on_info(self, msg):
-        self.K = np.array(msg.k, dtype=np.float64).reshape(3, 3)
-        self.dist = np.array(msg.d, dtype=np.float64)
-
-    def on_image(self, msg):
-        if self.K is None:
-            return
-
-        frame = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-        corners, ids, _rejected = self.detector.detectMarkers(gray)
-
-        if ids is not None:
-            cv2.aruco.drawDetectedMarkers(frame, corners, ids)
-            self.get_logger().info(f'saw markers {ids.flatten().tolist()}')
-
-        # to_image_msg() from handbook 20 — cv2_to_imgmsg is broken on OpenCV 5
-        self.debug_pub.publish(to_image_msg(frame, 'bgr8', msg.header))
+corners, ids, rejected = detector.detectMarkers(gray_image)
 ```
 
-Watch `/markers/debug` in `rqt_image_view`. Outlines and ID numbers should appear
-over the markers. **Get this working before attempting pose** — seeing the
-detection is how you'll debug everything after it.
+- Build the dictionary and detector **once, in `__init__`**. Rebuilding them per
+  frame is wasteful and a common beginner smell.
+- `detectMarkers` wants a **grayscale** image. Convert with
+  `cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)`.
+- `corners` is a list of arrays, one per marker, each `(1, 4, 2)` — four
+  (x, y) image points, in order: top-left, top-right, bottom-right, bottom-left.
+  **That order matters in the next section.**
+- `ids` is an `(N, 1)` array, or **`None`** when nothing is found — not an empty
+  list. `if ids is not None:` — `len(ids)` raises.
 
-> `detectMarkers` returns `ids = None` when nothing is found, not an empty array.
-> `if ids is not None:` — not `if len(ids):`, which raises.
+### The node you're building
+
+Structure it yourself, but it needs to:
+
+- subscribe to the image topic **and** `/camera/camera_info`
+- store the intrinsics when they arrive, and **return early from the image
+  callback until they have** — camera_info is often published once, and later
+  than the first frame
+- detect, and log which IDs it saw
+- draw the result with `cv2.aruco.drawDetectedMarkers(frame, corners, ids)` and
+  publish it, so you can watch it live in `rqt_image_view`
+
+Get detection visible before attempting pose. **Everything after this is debugged
+by looking at that image**, so it is worth the twenty minutes.
 
 ## Pose estimation
 
-`estimatePoseSingleMarkers` no longer exists. Use `solvePnP` directly, which is
-what it did internally anyway.
+`estimatePoseSingleMarkers` no longer exists. Use `cv2.solvePnP` directly, which
+is what it called internally anyway.
 
-The idea: you know the marker's four corners in **its own** coordinates (a flat
-square of known size), and you've measured where those corners landed in the
-image. `solvePnP` solves for the rotation and translation that explains it.
+**The idea:** you know where the marker's four corners are in *its own*
+coordinates — a flat square of known size, centred on itself. You have measured
+where those corners landed in the image. `solvePnP` solves for the rotation and
+translation that explains the difference.
 
-```python
-MARKER_SIZE = 0.15   # metres — MUST match the world
+### What you have to work out
 
-# Corners in the marker's own frame, in the order detectMarkers returns them:
-# top-left, top-right, bottom-right, bottom-left
-OBJECT_POINTS = np.array([
-    [-MARKER_SIZE / 2,  MARKER_SIZE / 2, 0.0],
-    [ MARKER_SIZE / 2,  MARKER_SIZE / 2, 0.0],
-    [ MARKER_SIZE / 2, -MARKER_SIZE / 2, 0.0],
-    [-MARKER_SIZE / 2, -MARKER_SIZE / 2, 0.0],
-], dtype=np.float32)
+1. **The object points.** Four 3-D points describing the marker's corners in its
+   own frame, `z = 0` because it's flat, sized by your real marker. They must be
+   in the **same order** `detectMarkers` returns: top-left, top-right,
+   bottom-right, bottom-left. Get the order wrong and the pose is a plausible-
+   looking lie.
+2. **The image points.** `corners[i]` reshaped to `(4, 2)` and cast to `float32`.
+3. **The call.** `cv2.solvePnP(object_points, image_points, K, dist, flags=...)`
+   returns `(success, rvec, tvec)`. Use **`cv2.SOLVEPNP_IPPE_SQUARE`** — it is
+   built for exactly this case and is far more stable than the default.
 
-
-def pose_of(self, marker_corners):
-    image_points = marker_corners.reshape(4, 2).astype(np.float32)
-    ok, rvec, tvec = cv2.solvePnP(
-        OBJECT_POINTS, image_points, self.K, self.dist,
-        flags=cv2.SOLVEPNP_IPPE_SQUARE)    # the right solver for a planar square
-    if not ok:
-        return None
-    return rvec, tvec
-```
+### Reading the answer
 
 `tvec` is the marker's position **in the camera's optical frame**, in metres:
 x right, y down, **z forward**. So `tvec[2]` is how far in front of the camera it
-is. `rvec` is the rotation as a compact axis-angle vector — turn it into a matrix
-with `cv2.Rodrigues(rvec)`.
+is — that's the number to check first against a tape measure.
 
-Draw the axes to check visually:
+`rvec` is a compact axis-angle rotation. `cv2.Rodrigues(rvec)` turns it into a
+3×3 matrix when you need one.
+
+Check it visually before you trust it:
 
 ```python
-cv2.drawFrameAxes(frame, self.K, self.dist, rvec, tvec, MARKER_SIZE / 2)
+cv2.drawFrameAxes(frame, K, dist, rvec, tvec, marker_size / 2)
 ```
 
-Red-green-blue axes should sit on the marker, flat against it. If they float or
-point oddly, your `OBJECT_POINTS` order doesn't match the detected corner order.
+The axes should sit flat **on** the marker. Floating, tilted or scaled wrongly
+means your object points are wrong — almost always the order or the size.
 
 ## Publishing it as a TF frame
 
-```python
-from geometry_msgs.msg import TransformStamped
-from tf2_ros import TransformBroadcaster
-from scipy.spatial.transform import Rotation
+A pose that only exists inside your node isn't much use. Broadcast it so the rest
+of ROS — and RViz — can see it.
 
+You'll need a `tf2_ros.TransformBroadcaster`, and to fill a
+`geometry_msgs/msg/TransformStamped` with the translation from `tvec` and a
+**quaternion** converted from `rvec`. `scipy.spatial.transform.Rotation` will do
+the matrix→quaternion step in one line (note it returns **x, y, z, w** — ROS
+wants the same order, but check, because half the libraries in this field
+disagree). Doing the conversion by hand is about ten lines and a good exercise.
 
-# in __init__
-self.tf_broadcaster = TransformBroadcaster(self)
+Two details that decide whether this works:
 
-# after computing rvec, tvec
-t = TransformStamped()
-t.header.stamp = msg.header.stamp           # the IMAGE's time, not now()
-t.header.frame_id = 'camera_optical_frame'  # optical convention — see handbook 21
-t.child_frame_id = f'marker_{marker_id}'
+- **Use the image's timestamp**, `msg.header.stamp` — **not** `now()`. The pose
+  describes where the marker was when the picture was taken. Using "now" makes TF
+  lookups fail or return quietly wrong answers while the rover is moving, and the
+  error surfaces nowhere near the cause.
+- **`frame_id` must be your camera's optical frame**, not `camera_link`. See
+  [`21-intrinsics.md`](21-intrinsics.md). Publishing into the body frame puts the
+  marker in a completely wrong direction while the distance still looks right —
+  which is exactly how you waste an evening.
 
-t.transform.translation.x = float(tvec[0])
-t.transform.translation.y = float(tvec[1])
-t.transform.translation.z = float(tvec[2])
-
-R, _ = cv2.Rodrigues(rvec)
-q = Rotation.from_matrix(R).as_quat()       # returns x, y, z, w
-t.transform.rotation.x = float(q[0])
-t.transform.rotation.y = float(q[1])
-t.transform.rotation.z = float(q[2])
-t.transform.rotation.w = float(q[3])
-
-self.tf_broadcaster.sendTransform(t)
-```
-
-Two details that matter:
-
-- **Use the image's timestamp**, not `self.get_clock().now()`. The pose describes
-  where the marker was when the picture was taken. Using "now" makes TF lookups
-  fail or return subtly wrong answers while the rover is moving.
-- **`frame_id` must be the optical frame.** Publishing into `camera_link` puts your
-  marker in the wrong direction — see [`21`](21-intrinsics.md).
-
-`scipy` is available; if you'd rather not add the dependency, convert the rotation
-matrix to a quaternion by hand — it's about ten lines and a good exercise.
-
-Then in RViz: set Fixed Frame to `odom`, add **TF**, and drive around. The marker
-frame should stay put in the world while the rover moves. **That is the whole
-point**: a thing you found in a flat image, correctly placed in 3-D space.
+Then in RViz: Fixed Frame `odom`, add **TF**, and drive around. **The marker frame
+should stay still in the world while the rover moves.** If it slides along with
+the rover, your transform is being published in the wrong frame.
 
 ## Scoring your detector — the provided test images
 

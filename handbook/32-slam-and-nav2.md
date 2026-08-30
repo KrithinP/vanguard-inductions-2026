@@ -1,12 +1,17 @@
 # 32 — SLAM, Nav2 and costmaps
 
 > **Time:** 90 minutes.
-> **By the end:** your rover has built a map and driven itself across it — and you
-> can explain what happened.
+> **By the end:** your rover has built a map and driven itself across it, and you
+> understand the stack you're about to build on top of.
 
-**You are not implementing any of this.** SLAM and Nav2 are each years of work by
-large teams. The configuration is provided in `vanguard_navigation/`. Your job is to run
-it, look carefully, and explain it.
+**This page is about the part you don't write.** SLAM and Nav2 are each years of
+work by large teams; the configuration is provided in `vanguard_navigation/`.
+Read it, run it, learn to tell when it's misbehaving — then leave it alone.
+
+**Everything else in Task 4 you write yourself**: the reflex that keeps the rover
+alive, the client that commands Nav2, and the logic that decides where to go.
+This page is the foundation those sit on, and you will debug them far faster if
+you know what a healthy stack looks like first.
 
 ## Getting the provided package
 
@@ -206,7 +211,9 @@ doorway it fits through easily. That experiment will teach you more than this pa
 
 ## Things to break on purpose
 
-The write-up asks you to describe a failure you caused. Some suggestions:
+Do this **now**, before you write any of Task 4. Every one of these will happen to
+you accidentally later, and recognising it in five seconds instead of an hour is
+the entire return on this page:
 
 - Put an obstacle in front of the rover **while** it's driving. Watch the local
   costmap update and the local plan bend around it.

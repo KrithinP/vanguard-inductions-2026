@@ -133,14 +133,21 @@ else
 fi
 
 # ──────────────────────────────── TASK 4 ────────────────────────────────
-section "TASK 4 — NAVIGATION  (bonus)"
+section "TASK 4 — AUTONOMY  (bonus)"
 if ! has_work 4; then
   idle "not attempted — this costs you nothing"
 else
   STARTED="$STARTED 4"
-  { [ -f src/task4/OBSERVATIONS.md ] && [ "$(wc -w < src/task4/OBSERVATIONS.md)" -gt 300 ]; } \
-    && go "observations written ($(wc -w < src/task4/OBSERVATIONS.md) words)" \
-    || note "OBSERVATIONS.md missing or under 300 words"
+  grep -rqs 'LaserScan' src/task4 && go "reads the laser" || note "no LaserScan subscription"
+  grep -rqs 'NavigateToPose' src/task4 && go "commands Nav2" || note "no NavigateToPose action client"
+  grep -rqs 'send_goal_async' src/task4 && go "uses the async action API" \
+    || note "no send_goal_async — a blocking client will deadlock"
+  grep -rqs 'OccupancyGrid' src/task4 && go "reads the map" || note "no OccupancyGrid subscription"
+  grep -rqs 'TRANSIENT_LOCAL\|transient_local' src/task4 && go "map QoS set correctly" \
+    || note "no transient-local QoS — you will receive no map at all"
+  { [ -f src/task4/NOTES.md ] && [ "$(wc -w < src/task4/NOTES.md)" -gt 250 ]; } \
+    && go "notes written ($(wc -w < src/task4/NOTES.md) words)" \
+    || note "NOTES.md missing or under 250 words"
   find src/task4 -name '*.rviz' 2>/dev/null | grep -q . && go "RViz config committed" || note "no .rviz config"
   find src/task4 \( -name '*.yaml' -o -name '*.pgm' \) 2>/dev/null | grep -q . \
     && go "saved map present" || note "no saved map"
