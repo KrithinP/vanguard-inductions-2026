@@ -28,6 +28,12 @@ same error message.
 
 | Error | Cause | Fix |
 |---|---|---|
+| `Support for password authentication was removed` | GitHub killed password auth | `gh auth login` → HTTPS → browser · [README](../README.md) |
+| `bad interpreter: /bin/bash^M` | Windows line endings (CRLF) | `git config --global core.autocrlf input`, then re-clone |
+| Actions tab says workflows are disabled | GitHub disables them on new forks | Click *"I understand my workflows…"* on **your fork's** Actions tab |
+| `Permission denied (publickey)` on push | No SSH key, or wrong remote | Easiest: `gh auth login` and use HTTPS |
+| Docker Desktop won't start (Windows) | Virtualization off in BIOS, or WSL 2 missing | Enable *Intel VT-x / AMD-V* in BIOS; `wsl --install` in PowerShell |
+| `no space left on device` mid-build | Docker images are large | `docker system prune -a` frees old layers |
 | `ros2: command not found` | Not sourced | `source /opt/ros/jazzy/setup.bash` · [03](03-bashrc-path-source.md) |
 | `Unable to locate package ros-jazzy-*` | Repo not added, or no `apt update` | [04 step 3](04-install-ros2.md) |
 | `curl: (35) Connection reset` on the ROS key | Flaky network to GitHub | **Just retry** — often works on the 3rd or 4th go · [04](04-install-ros2.md) |

@@ -108,14 +108,40 @@ Nav2 is not one algorithm. It's a set of servers coordinated by a **behaviour tr
 The tree is what makes Nav2 feel intelligent: *plan; follow; if the controller
 fails, clear the costmap and retry; if that fails, back up and replan.*
 
-### Lifecycle nodes
+### Lifecycle nodes — the thing that will confuse you
 
-Nav2 nodes start **inactive** and must be configured then activated. The
-`lifecycle_manager` in the provided launch file does this automatically.
+**slam_toolbox and every Nav2 server are *lifecycle* nodes.** They boot into an
+`unconfigured` state where they subscribe to nothing, publish nothing, and log
+nothing. Something has to walk them through *configure → activate* before they do
+any work.
 
-**If navigation silently does nothing, look at the lifecycle manager's log first.**
-A server that failed to activate produces no error at the point you notice — just
-absence.
+That is why both provided launch files include a `lifecycle_manager`. Without one,
+`ros2 node list` shows the node, `ps` shows the process, and **nothing whatsoever
+happens** — no error, no warning, no map.
+
+Check the state directly:
+
+```bash
+ros2 service call /slam_toolbox/get_state lifecycle_msgs/srv/GetState "{}"
+```
+
+```
+response: State(id=3, label='active')
+```
+
+`label='unconfigured'` means it never started properly. `label='active'` means it's
+working. Another quick tell:
+
+```bash
+ros2 topic info /scan
+```
+
+An active SLAM node appears as `Subscription count: 1`. A count of **0** means
+nothing is listening to your laser, however healthy everything looks.
+
+**If anything in this mission silently does nothing, check lifecycle state first.**
+It is the single most likely cause, and it produces no error message at the point
+you notice the problem.
 
 ### Run it
 
@@ -193,8 +219,18 @@ The write-up asks you to describe a failure you caused. Some suggestions:
 
 ## If it went wrong
 
-**Map never appears** — Fixed Frame isn't `map`, or slam_toolbox isn't getting
-`/scan`. Check `ros2 topic hz /scan`.
+**Map never appears, and slam_toolbox prints nothing at all** — it is almost
+certainly stuck in `unconfigured`. Check with the `get_state` call above. If you
+launched the node by hand with `ros2 run` instead of using
+`ros2 launch sol4_provided slam.launch.py`, there is no lifecycle manager and it
+will never activate. Use the launch file.
+
+**Map never appears but SLAM is `active`** — Fixed Frame isn't `map`, or it isn't
+getting `/scan`. Check `ros2 topic hz /scan` and `ros2 topic info /scan`.
+
+**`maximum laser range setting (25.0 m) exceeds the capabilities of the used Lidar`**
+— harmless, but it means `max_laser_range` in the config doesn't match your
+sensor's `<range><max>`. Make them agree.
 
 **Map appears then smears into nonsense** — driving too fast, or odometry is bad.
 

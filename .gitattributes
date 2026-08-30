@@ -1,0 +1,20 @@
+# Windows checkouts convert LF to CRLF by default, which makes every shell script
+# fail with "bad interpreter: /bin/bash^M" — especially inside Docker/WSL.
+# Force LF on everything that gets executed or parsed by Linux tooling.
+*.sh        text eol=lf
+*.py        text eol=lf
+*.bash      text eol=lf
+*.yaml      text eol=lf
+*.yml       text eol=lf
+*.urdf      text eol=lf
+*.xacro     text eol=lf
+*.sdf       text eol=lf
+*.md        text eol=lf
+Dockerfile  text eol=lf
+tools/vanguard text eol=lf
+
+# Binary — never touch
+*.png binary
+*.jpg binary
+*.pgm binary
+*.gz  binary

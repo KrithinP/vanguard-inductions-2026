@@ -56,7 +56,26 @@ git clone https://github.com/YOUR-USERNAME/vanguard-inductions-2026.git
 cd vanguard-inductions-2026
 ```
 
-### 3. Tell git who you are
+### 3. Let git talk to GitHub
+
+**This will stop you the first time you try to push, so do it now.** GitHub
+removed password authentication — typing your account password fails with
+*"Support for password authentication was removed."*
+
+Easiest fix, on any OS:
+
+```bash
+gh auth login
+```
+
+Choose **GitHub.com → HTTPS → Login with a web browser**, and paste the code it
+shows you. Done once, works forever.
+
+*(If `gh` isn't installed: `sudo apt install gh` on Ubuntu, `brew install gh` on
+macOS, or download from [cli.github.com](https://cli.github.com). On Windows,
+Git for Windows also offers a browser login the first time you push.)*
+
+### 4. Tell git who you are
 
 On a fresh machine git doesn't know, and won't let you commit until you say:
 
@@ -65,7 +84,15 @@ git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 ```
 
-### 4. Pick a callsign
+### 5. Turn on Actions in your fork
+
+Go to the **Actions** tab of *your fork* and click
+**"I understand my workflows, go ahead and enable them."**
+
+**GitHub disables workflows on new forks by default.** Until you click this, your
+pushes are never checked and you get no feedback at all. One click, once.
+
+### 6. Pick a callsign
 
 Flight controllers go by callsign, not name. 3–16 characters, letters and numbers,
 upper case. This is what appears on the progress board — **your real name doesn't.**
@@ -74,7 +101,7 @@ upper case. This is what appears on the progress board — **your real name does
 echo "NIGHTJAR" > callsign.txt
 ```
 
-### 5. Get an environment
+### 7. Get an environment
 
 Two routes, **both fully supported**:
 
@@ -133,7 +160,16 @@ each part of the current mission — so you can fix things before a human looks.
 It's in the Actions tab of your fork.
 
 Each mission also asks for a **short screen recording, under 90 seconds**, with one
-thing explained out loud. Link it in your PR; don't commit video files.
+thing explained out loud.
+
+**Where to put it:** upload to Google Drive (set *Anyone with the link → Viewer*)
+or YouTube as **Unlisted**, and paste the link in your PR. **Check the link works
+in a private/incognito window** — a Drive file nobody can open is the single most
+common submission problem. Don't commit video files to git; the repo rejects them.
+
+Record with whatever you have: OBS, the Xbox Game Bar (`Win+G`), QuickTime on
+macOS, or your phone pointed at the screen. **Production quality is worth nothing
+here** — we want to hear you explain one thing.
 
 | | |
 |---|---|

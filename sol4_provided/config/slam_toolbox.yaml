@@ -13,11 +13,16 @@ slam_toolbox:
     base_frame: base_link
     scan_topic: /scan
 
+    # Managed by nav2_lifecycle_manager in slam.launch.py. Without a manager this
+    # node never leaves 'unconfigured' and silently produces nothing.
+    use_lifecycle_manager: true
+
     mode: mapping              # 'mapping' builds a map; 'localization' uses a saved one
 
     # --- how often to do work --------------------------------------------
     resolution: 0.05           # metres per map cell. Smaller = finer, slower, more memory.
-    max_laser_range: 12.0      # ignore returns beyond this
+    max_laser_range: 12.0      # must match your LiDAR's <range><max>, or
+                               # slam_toolbox warns and clamps
     minimum_time_interval: 0.5 # don't process scans faster than this
     transform_publish_period: 0.02
     map_update_interval: 1.0

@@ -103,6 +103,22 @@ Perfectly acceptable. Two things to know:
 **`docker: command not found`** — Docker isn't installed, or on Windows you're in
 a terminal that can't see it. Use PowerShell or the WSL terminal.
 
+**Docker Desktop won't start at all (Windows)** — nearly always one of two things:
+
+1. **Virtualization is disabled in your BIOS.** Reboot into BIOS (usually `F2` or
+   `Del`), find *Intel VT-x*, *AMD-V* or *SVM Mode*, and enable it. Laptops ship
+   with this off surprisingly often.
+2. **WSL 2 isn't installed.** In PowerShell as administrator:
+   ```powershell
+   wsl --install
+   ```
+   Then reboot.
+
+**`no space left on device` partway through** — Docker images are big.
+```bash
+docker system prune -a
+```
+
 **`permission denied while trying to connect to the Docker daemon`** (Linux) —
 ```bash
 sudo usermod -aG docker $USER

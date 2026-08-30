@@ -35,4 +35,20 @@ def generate_launch_description():
             output='screen',
             parameters=[params, {'use_sim_time': use_sim_time}],
         ),
+
+        # slam_toolbox is a LIFECYCLE node: it boots into 'unconfigured', where it
+        # subscribes to nothing and logs nothing. Without this manager it looks
+        # like it started fine and simply never produces a map.
+        # (We lost an afternoon to exactly that while building this.)
+        Node(
+            package='nav2_lifecycle_manager',
+            executable='lifecycle_manager',
+            name='lifecycle_manager_slam',
+            output='screen',
+            parameters=[{
+                'use_sim_time': use_sim_time,
+                'autostart': True,
+                'node_names': ['slam_toolbox'],
+            }],
+        ),
     ])
