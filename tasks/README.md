@@ -8,7 +8,7 @@ individually; there is one deadline for everything.
 
 | Task | Download |
 |---|---|
-| **1 — Boot Sequence** | [Windows](sol1-WINDOWS.pdf) · [macOS](sol1-MACOS.pdf) · [Linux](sol1-LINUX.pdf) |
+| **1 — Boot Sequence** | [Windows](task1-windows.pdf) · [macOS](task1-macos.pdf) · [Linux](task1-linux.pdf) |
 
 Later tasks are added here as they're handed out.
 
