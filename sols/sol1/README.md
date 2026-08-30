@@ -156,23 +156,33 @@ Run this before you submit:
 ```
 
 ```
-COMMS
+MISSION 1 — BOOT SEQUENCE
   GO    callsign = NIGHTJAR
-AUTHENTICATION
   GO    flag submitted (verified at mission control)
-PAYLOAD
-  GO    ROS 2 package present at src/sol1/first_light
+  GO    package present at src/sol1/first_light
   GO    node source present
-FLIGHT LOG
   GO    mission log written
-BUILD
   GO    colcon build succeeded
   GO    node publishes on /turtle1/cmd_vel
 
-ALL STATIONS GO — Sol 1 complete.
+MISSION 2 — ROLLING CHASSIS
+  ·     not started
+
+MISSION 3 — EYES
+  ·     not started
+
+MISSION 4 — THE WORLD MODEL  (bonus)
+  ·     not attempted — this costs you nothing
+
+────────────────────────────────────────
+Started: 1   Complete: 1
+ALL STATIONS GO.
 ```
 
-| | |
+Missions you haven't started are ignored — they can never fail your build. The same
+check runs automatically on every push to your fork.
+
+| File | What it should be |
 |---|---|
 | `callsign.txt` | your callsign, upper case |
 | `FLAG.txt` | 16 hex characters |
