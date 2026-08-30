@@ -55,7 +55,9 @@ else
 fi
 
 station "BUILD"
-if command -v colcon >/dev/null 2>&1 && [ -d /opt/ros/jazzy ]; then
+if [ ! -f "$PKG/package.xml" ]; then
+  printf "  ---- no package to build yet; skipped\n"
+elif command -v colcon >/dev/null 2>&1 && [ -d /opt/ros/jazzy ]; then
   set +u; source /opt/ros/jazzy/setup.bash; set -u
   BUILD_DIR=$(mktemp -d)
   mkdir -p "$BUILD_DIR/src"
