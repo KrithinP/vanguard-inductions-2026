@@ -105,7 +105,7 @@ cd ..
 rm -r practice           # delete a directory and everything in it
 ```
 
-> ⚠ **`rm` does not use a recycle bin.** There is no undo. `rm -rf` on the wrong
+> **Warning —** `rm` does not use a recycle bin.** There is no undo. `rm -rf` on the wrong
 > path is how people lose a semester of work. Run `ls` on a path before you `rm` it.
 > Never run `rm -rf /` or `rm -rf ~` — read any command someone gives you before
 > pasting it.

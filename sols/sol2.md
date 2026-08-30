@@ -1,4 +1,14 @@
-# 🛰 SOL 2 — "Rolling Chassis"
+# SOL 2 — "Rolling Chassis"
+
+```
+╔════════════════════════════════════════════════════════════════╗
+║  SOL 014 · LANDING + 13                                        ║
+║  SPROSCAPE · staging area                                      ║
+║  STATUS: MOBILITY UNTESTED                                     ║
+╠════════════════════════════════════════════════════════════════╣
+║  Build the chassis. Prove it moves where you tell it.          ║
+╚════════════════════════════════════════════════════════════════╝
+```
 
 > **Objective:** build the rover, put it in the world, and drive it.
 > **Effort:** 6–8 hours.
@@ -24,7 +34,7 @@ your own control.
 
 ### 1 · Describe the rover
 
-📖 [`handbook/10-urdf.md`](../handbook/10-urdf.md)
+ [`handbook/10-urdf.md`](../handbook/10-urdf.md)
 
 Write a **URDF** for a four-wheel rover: a chassis, four wheels, four joints.
 Sensible dimensions — roughly 0.6 m long, 0.4 m wide, wheels around 0.1 m radius.
@@ -34,7 +44,7 @@ ROS assumes it exists.
 
 ### 2 · See it before you simulate it
 
-📖 [`handbook/10-urdf.md`](../handbook/10-urdf.md)
+ [`handbook/10-urdf.md`](../handbook/10-urdf.md)
 
 Load it with `robot_state_publisher` and view it in **RViz**. Use
 `joint_state_publisher_gui` to drag the wheels around by hand.
@@ -45,7 +55,7 @@ Gazebo is far harder than debugging it here.
 
 ### 3 · Understand the transform tree
 
-📖 [`handbook/11-tf.md`](../handbook/11-tf.md)
+ [`handbook/11-tf.md`](../handbook/11-tf.md)
 
 Inspect it:
 
@@ -58,7 +68,7 @@ is the single most common reason "everything looks fine but nothing works".
 
 ### 4 · Spawn it into Gazebo Harmonic
 
-📖 [`handbook/12-gazebo.md`](../handbook/12-gazebo.md)
+ [`handbook/12-gazebo.md`](../handbook/12-gazebo.md)
 
 Put the rover in a world with some ground and a few obstacles.
 
@@ -69,7 +79,7 @@ Put the rover in a world with some ground and a few obstacles.
 
 ### 5 · Bridge the topics
 
-📖 [`handbook/12-gazebo.md`](../handbook/12-gazebo.md)
+ [`handbook/12-gazebo.md`](../handbook/12-gazebo.md)
 
 Gazebo's topics and ROS's topics are separate worlds. `ros_gz_bridge` connects
 them, one topic at a time, and you have to say which.
@@ -84,7 +94,7 @@ reports where it thinks it is. Then drive it with `teleop_twist_keyboard`.
 
 ### 7 · Drive it with your own code
 
-📖 [`handbook/13-closing-the-loop.md`](../handbook/13-closing-the-loop.md)
+ [`handbook/13-closing-the-loop.md`](../handbook/13-closing-the-loop.md)
 
 Write a node that drives the rover in a **square** — 2 m per side — and returns
 roughly to where it started. Register the entry point as `square`.

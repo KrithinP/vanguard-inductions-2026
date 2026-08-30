@@ -1,16 +1,15 @@
 <div align="center">
 
 ```
-        ·  .           ✦                    ·               ✦
-   ✦          ___                                    ·
-        .    /   \___     P R O J E C T              ✦        ·
-            |  o  o   \_    V A N G U A R D
-     ·      |___________|                                  ·
-             |_|     |_|   Autonomous Subsystem   ·
-   ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+             ___
+            /   \___          P R O J E C T
+           |  o  o   \_        V A N G U A R D
+           |___________|
+            |_|     |_|       Autonomous Subsystem
+   ================================================================
 ```
 
-# 🛰 INDUCTION 2026
+# INDUCTION 2026
 
 **BITS Pilani Hyderabad · Mars Rover Team**
 
@@ -51,21 +50,16 @@ that checks your work before a human ever sees it.
 
 ## The Sols
 
-```
-   SOL 001 ──────── SOL 014 ──────── SOL 031 ──────── SOL 067
-   boot             chassis          eyes             autonomy
-   ▓▓▓▓▓▓           ▓▓▓▓▓▓           ▓▓▓▓▓▓           ▓▓▓▓▓▓▓▓▓▓▓
-   guided           assembled        described        on your own
-```
+These are the tasks. Do them in order.
 
-| | Sol | What you'll build | Effort |
-|---|---|---|---|
-| **1** | [Boot Sequence](sols/sol1.md) | A working workstation, and your first ROS 2 node | 6–8 h |
-| **2** | [Rolling Chassis](sols/sol2.md) | A four-wheel rover you can drive in simulation | 6–8 h |
-| **3** | [Eyes](sols/sol3.md) | A camera, and markers located in 3-D | 6–8 h |
-| **4** | [Terra Incognita](sols/sol4.md) | ⭐ **Bonus** — a rover that explores on its own | 12–18 h |
+| | | | | |
+|---|---|---|
+| **Sol 1** | [sols/sol1.md](sols/sol1.md) | Windows / macOS / Linux |
+| **Sol 2** | [sols/sol2.md](sols/sol2.md) | |
+| **Sol 3** | [sols/sol3.md](sols/sol3.md) | |
+| **Sol 4** | [sols/sol4.md](sols/sol4.md) | bonus |
 
-Also as printable PDFs in [`sols/`](sols/README.md).
+Printable PDFs and more detail in [`sols/`](sols/README.md).
 
 > ### It looks like a lot. It isn't as bad as it looks.
 >
@@ -74,19 +68,16 @@ Also as printable PDFs in [`sols/`](sols/README.md).
 > error we know about has an entry in
 > [`handbook/99-troubleshooting.md`](handbook/99-troubleshooting.md) with the fix.
 >
-> **You write far less code than the page count suggests** — around 30 lines for
-> Sol 1. Most of the time in the early tasks goes on getting the environment
-> right, which is why we've written so much about it.
+> **Most of the early effort goes into the environment, not the code.** That is
+> why so much has been written about it.
 >
-> **The support gets lighter as you go, on purpose.** Sol 1 hands you a working
-> node to copy. Sol 2 gives you the pieces to assemble. Sol 3 gives you the API
-> and the traps, and you write the node. Sol 4 gives you the algorithm in words
-> and you build it. If Sol 4 feels hard, that's the design — it's a bonus, and
-> it's meant to stretch the people who want stretching.
+> **The support thins out as you go, on purpose.** Sol 1 hands you a working
+> example. By Sol 4 you get the problem described and build it yourself. If Sol 4
+> feels hard, that is the design — it is a bonus, and it is meant to stretch the
+> people who want stretching.
 >
 > **You are not expected to finish all four.** Sol 1 alone, done properly and
-> understood, is a perfectly good submission — and counts for more than four
-> rushed ones you can't explain. Start at Sol 1 and get as far as you get.
+> understood, is a good submission.
 
 ## What you need
 
@@ -102,7 +93,7 @@ starts from "what is a terminal".
 
 ### 1. Star this repository
 
-⭐ top right. It's how we gauge how many people are taking part, which decides how
+ top right. It's how we gauge how many people are taking part, which decides how
 much support we staff.
 
 ### 2. Fork it, then clone your fork
@@ -152,8 +143,8 @@ echo "NIGHTJAR" > callsign.txt
 
 | | For | Start at |
 |---|---|---|
-| 🐳 **Docker** | Windows 10/11, macOS (incl. Apple Silicon), any Linux. Nothing touches your partitions. | [`docker/`](docker/README.md) |
-| 🐧 **Ubuntu 24.04** | Dual boot or a spare machine. Faster, and what the team runs. | [`handbook/00`](handbook/00-install-ubuntu.md) |
+| **Docker** | Windows 10/11, macOS (incl. Apple Silicon), any Linux. Nothing touches your partitions. | [`docker/`](docker/README.md) |
+| **Ubuntu 24.04** | Dual boot or a spare machine. Faster, and what the team runs. | [`handbook/00`](handbook/00-install-ubuntu.md) |
 
 On Windows or a Mac and unsure? **Use Docker.**
 
@@ -239,15 +230,15 @@ you tried, the exact command, the full error, and your `vanguard doctor` output.
 
 Every NASA mission has a patch. So do we — awarded, not given:
 
-| | | |
-|---|---|---|
-| 🛰 | **FIRST LIGHT** | Sol 1 complete, and you can explain your node |
-| 🔧 | **ROLLING** | Sol 2 complete — it drives, and comes back roughly where it started |
-| 👁 | **LINE OF SIGHT** | Sol 3 complete — a marker placed correctly in 3-D |
-| 🗺 | **TERRA INCOGNITA** | Sol 4 — your rover explored an unknown arena unattended, and *stopped* |
-| 🔍 | **CURIOUS** | You found the thing we didn't tell you about |
-| 🤝 | **CAPCOM** | You answered someone else's Issue with something that actually helped |
-| 🩹 | **ANOMALY REPORT** | You found a real bug in *our* instructions and told us |
+| | |
+|---|---|
+| **FIRST LIGHT** | Sol 1 complete, and you can explain your node |
+| **ROLLING** | Sol 2 complete — it drives, and comes back roughly where it started |
+| **LINE OF SIGHT** | Sol 3 complete — a marker placed correctly in 3-D |
+| **TERRA INCOGNITA** | Sol 4 — your rover explored an unknown arena unattended, and *stopped* |
+| **CURIOUS** | You found the thing we didn't tell you about |
+| **CAPCOM** | You answered someone else's Issue with something that actually helped |
+| **ANOMALY REPORT** | You found a real bug in *our* instructions and told us |
 
 The last three have nothing to do with code, and we mean them just as seriously.
 

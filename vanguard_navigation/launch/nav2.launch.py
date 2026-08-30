@@ -14,7 +14,6 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-
 LIFECYCLE_NODES = [
     'controller_server',
     'planner_server',
@@ -22,7 +21,6 @@ LIFECYCLE_NODES = [
     'bt_navigator',
     'velocity_smoother',
 ]
-
 
 def generate_launch_description():
     params = os.path.join(

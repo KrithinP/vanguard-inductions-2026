@@ -51,7 +51,7 @@ Breaking that down:
   `geometry_msgs` has `Twist`. Declaring them here writes them into `package.xml`.
 - `--license Apache-2.0` — optional, but omitting it prints a long warning.
 
-> ⚠ **Put the package name first.** `--dependencies` accepts any number of values,
+> **Warning —** Put the package name first.** `--dependencies` accepts any number of values,
 > so if you write it before the name, it swallows the name as a dependency and you
 > get `error: the following arguments are required: package_name`. Either put the
 > name first as above, or put `--dependencies` last.
@@ -125,7 +125,7 @@ source ~/vanguard_ws/install/setup.bash
 ROS first, yours second — yours *overlays* ROS's, so your packages can override
 system ones.
 
-> ⚠ **Chicken and egg.** If `install/setup.bash` doesn't exist yet, that second
+> **Warning —** Chicken and egg.** If `install/setup.bash` doesn't exist yet, that second
 > line prints an error in every new terminal. Build once first, or ignore the
 > complaint until you have.
 

@@ -124,7 +124,7 @@ Put the `source` line in there and every new terminal arrives ready.
 echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 ```
 
-> ⚠ **`>>` appends. `>` overwrites.** `>` would erase your entire `.bashrc`.
+> **Warning —** `>>` appends. `>` overwrites.** `>` would erase your entire `.bashrc`.
 > One character. Get it right.
 
 Apply it to the terminal you're in right now:

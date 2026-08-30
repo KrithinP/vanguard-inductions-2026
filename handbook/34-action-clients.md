@@ -85,9 +85,7 @@ whole thing naturally becomes a loop.
 | **Rejected** | Nav2 refused it — often a malformed pose or an inactive server | Fix the goal; retrying identically won't help |
 | **Aborted** | It tried and gave up — unreachable, or stuck | Give up on **this** goal, pick another |
 | **Canceled** | You cancelled it | Whatever you cancelled it for |
-| **Succeeded** | It arrived | Carry on |
-
-**Treating aborted as succeeded is the bug that makes an explorer loop forever**
+| **Succeeded** | It arrived | Carry on | **Treating aborted as succeeded is the bug that makes an explorer loop forever**
 on a frontier it cannot reach. Keep a record of goals that failed and don't offer
 them again.
 

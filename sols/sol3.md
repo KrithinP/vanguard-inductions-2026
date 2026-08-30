@@ -1,4 +1,14 @@
-# 🛰 SOL 3 — "Eyes"
+# SOL 3 — "Eyes"
+
+```
+╔════════════════════════════════════════════════════════════════╗
+║  SOL 031 · LANDING + 30                                        ║
+║  SPROSCAPE · marker field                                      ║
+║  STATUS: NAVIGATING BY DEAD RECKONING                          ║
+╠════════════════════════════════════════════════════════════════╣
+║  Give it eyes. Stop trusting the wheels.                       ║
+╚════════════════════════════════════════════════════════════════╝
+```
 
 > **Objective:** give the rover a camera, and teach it to recognise where it is
 > from what it sees.
@@ -35,7 +45,7 @@ This Sol, you give the rover eyes.
 
 ### 1 · Add a camera
 
-📖 [`handbook/20-cameras.md`](../handbook/20-cameras.md)
+ [`handbook/20-cameras.md`](../handbook/20-cameras.md)
 
 Mount a camera on the rover in your URDF and bridge its image topic into ROS.
 
@@ -52,7 +62,7 @@ swapped. It's a rite of passage. Recognise it fast.
 
 ### 3 · ROS images ↔ OpenCV
 
-📖 [`handbook/20-cameras.md`](../handbook/20-cameras.md)
+ [`handbook/20-cameras.md`](../handbook/20-cameras.md)
 
 `cv_bridge` converts between the two. Write a node that subscribes to the camera,
 converts to grayscale, and publishes the result on a new topic. View both.
@@ -61,7 +71,7 @@ Small, but it proves the whole pipeline before you build anything real on it.
 
 ### 4 · Camera intrinsics
 
-📖 [`handbook/21-intrinsics.md`](../handbook/21-intrinsics.md)
+ [`handbook/21-intrinsics.md`](../handbook/21-intrinsics.md)
 
 Look at `/camera_info`. Those numbers — focal length and optical centre — describe
 how the lens maps the 3-D world onto a flat sensor.
@@ -71,9 +81,9 @@ flat picture is impossible without knowing how the picture was made.
 
 ### 5 · Detect markers
 
-📖 [`handbook/22-aruco.md`](../handbook/22-aruco.md)
+ [`handbook/22-aruco.md`](../handbook/22-aruco.md)
 
-> ⚠ **OpenCV 5 removed the old ArUco functions.** Almost every tutorial online
+> **Warning —** OpenCV 5 removed the old ArUco functions.** Almost every tutorial online
 > uses `cv2.aruco.detectMarkers(...)`, which no longer exists. The handbook has
 > the API that actually works. Read it before you search.
 
@@ -97,7 +107,7 @@ outline and ID and publish it so you can watch it happen.
 
 ### 6 · Estimate marker pose
 
-📖 [`handbook/22-aruco.md`](../handbook/22-aruco.md)
+ [`handbook/22-aruco.md`](../handbook/22-aruco.md)
 
 Using the intrinsics, work out **where each marker is relative to the camera** —
 distance and orientation, not just presence in the frame.

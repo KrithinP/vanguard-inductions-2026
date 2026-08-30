@@ -24,8 +24,8 @@ That's it. A robot is links connected by joints, forming a tree.
 
 ```
         base_link  (the chassis)
-        /   |   |   \
-   wheel_fl |   |  wheel_rr
+        /   | |   \
+   wheel_fl | |  wheel_rr
        wheel_fr wheel_rl
 ```
 
@@ -57,9 +57,7 @@ A link can have three parts, and they do different jobs:
 |---|---|---|
 | `<visual>` | what it looks like | RViz, the simulator's renderer |
 | `<collision>` | what it bumps into | the physics engine |
-| `<inertial>` | mass and how it's distributed | the physics engine |
-
-**In RViz you only need `<visual>`.** For simulation you need all three, and this
+| `<inertial>` | mass and how it's distributed | the physics engine | **In RViz you only need `<visual>`.** For simulation you need all three, and this
 catches people out: a link with no `<inertial>` may be ignored by physics entirely,
 so your rover falls through the floor or refuses to move.
 
@@ -132,7 +130,6 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
-
 
 def generate_launch_description():
     pkg = get_package_share_directory('vanguard_rover')

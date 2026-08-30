@@ -11,7 +11,7 @@ work *and nobody can help me*".
 
 You have three routes. **Read all three before choosing.**
 
-> ### 🐳 On Windows or a Mac? Read this first.
+> ###  On Windows or a Mac? Read this first.
 >
 > **You do not have to install Ubuntu at all.** Route C runs the whole environment
 > in a container and shows you an Ubuntu desktop in your web browser — on Windows
@@ -112,7 +112,7 @@ Enable 3D acceleration in Settings → Display. Then install
 **Guest Additions** from the VM's Devices menu — without it your window won't resize
 and graphics will crawl.
 
-## Route C — Docker 🐳
+## Route C — Docker
 
 A full Ubuntu desktop with ROS and Gazebo already installed, running in a
 container, viewed in your browser.

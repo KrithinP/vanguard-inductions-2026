@@ -67,7 +67,6 @@ else is doing it properly in 3-D and for corners rather than widths.
 from sensor_msgs.msg import CameraInfo
 import numpy as np
 
-
 class Detector(Node):
     def __init__(self):
         ...

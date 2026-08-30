@@ -21,7 +21,7 @@ maintenance panel. Detecting them is not an exercise — it's the job.
 
 ---
 
-## ⚠ Read this before you copy any tutorial
+## Warning: Read this before you copy any tutorial
 
 **OpenCV 5 removed the old ArUco API.** Every blog post, StackOverflow answer and
 YouTube tutorial written before 2024 uses functions that **no longer exist**:
@@ -72,7 +72,7 @@ for marker_id in (0, 1, 2, 3):
 
 ## Putting them in the world
 
-> ### ⚠ Textures may not render, and that is not your fault
+> ### Warning: Textures may not render, and that is not your fault
 >
 > Gazebo renders PBR textures through the `ogre2` engine. **With software
 > rendering — which is what you get in Docker, and in most VMs — the texture often

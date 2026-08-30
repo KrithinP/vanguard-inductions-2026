@@ -22,7 +22,6 @@ import rclpy                        # the ROS 2 Python library
 from rclpy.node import Node         # base class for every node
 from std_msgs.msg import String     # the message type we'll send
 
-
 class HelloPublisher(Node):
     def __init__(self):
         super().__init__('hello_publisher')     # this node's name on the graph
@@ -43,7 +42,6 @@ class HelloPublisher(Node):
         self.get_logger().info(f'Publishing: "{msg.data}"')
         self.count += 1
 
-
 def main(args=None):
     rclpy.init(args=args)           # start up ROS
     node = HelloPublisher()
@@ -54,7 +52,6 @@ def main(args=None):
     finally:
         node.destroy_node()
         rclpy.shutdown()
-
 
 if __name__ == '__main__':
     main()

@@ -3,7 +3,7 @@
 > **Time:** 90 minutes.
 > **By the end:** your rover exists in a simulated world and moves when you tell it to.
 
-## ⚠ Read this before you search the internet
+## Warning: Read this before you search the internet
 
 There are **two** Gazebos, and almost everything written online is about the wrong one.
 
@@ -12,9 +12,7 @@ There are **two** Gazebos, and almost everything written online is about the wro
 | Status | end of life (Jan 2025) | current, what we use |
 | Commands | `gazebo`, `rosrun gazebo_ros` | `gz sim` |
 | ROS packages | `gazebo_ros_pkgs`, `gazebo_ros` | `ros_gz_sim`, `ros_gz_bridge` |
-| Plugin names | `libgazebo_ros_diff_drive.so` | `gz-sim-diff-drive-system` |
-
-**If a tutorial mentions `gazebo_ros`, `libgazebo_ros_*.so`, or tells you to run
+| Plugin names | `libgazebo_ros_diff_drive.so` | `gz-sim-diff-drive-system` | **If a tutorial mentions `gazebo_ros`, `libgazebo_ros_*.so`, or tells you to run
 `gazebo`, it is for Classic and will not work here.** This will happen constantly.
 Check before you spend an hour on it.
 
@@ -172,7 +170,7 @@ Add this inside `<robot>`, at the end:
   </gazebo>
 ```
 
-> ⚠ **`<tf_topic>` is easy to miss and breaks everything downstream.** Without it
+> **Warning —** `<tf_topic>` is easy to miss and breaks everything downstream.** Without it
 > the plugin publishes the `/odom` *message* but never the `odom` → `base_link`
 > **transform**. Your rover will drive, and `ros2 topic echo /odom` will look
 > perfectly healthy — but RViz can't place the robot and anything needing to know

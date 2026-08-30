@@ -39,7 +39,7 @@ permission.
 It'll ask for your password. **Nothing appears as you type — no dots, no stars.**
 That's deliberate, not a broken keyboard. Type it and press Enter.
 
-> ⚠ `sudo` will do anything you ask, including destroying the machine. Never paste
+> **Warning.** `sudo` will do anything you ask, including destroying the machine. Never paste
 > a `sudo` command you don't understand. If a StackOverflow answer says
 > `sudo rm -rf /usr` — read it, understand it, then don't.
 

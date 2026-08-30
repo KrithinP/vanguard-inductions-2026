@@ -7,10 +7,10 @@ container, viewed through your web browser. **No dual boot, no VM, no partitioni
 
 | Your machine | Works? | Notes |
 |---|---|---|
-| **Windows 10 / 11** | ✅ | Docker Desktop with the WSL 2 backend (the default) |
-| **macOS, Apple Silicon** (M1–M4) | ✅ | Runs **natively** on arm64 — no emulation |
-| **macOS, Intel** | ✅ | |
-| **Linux** (any distro) | ✅ | Docker Engine + Compose |
+| **Windows 10 / 11** | | Docker Desktop with the WSL 2 backend (the default) |
+| **macOS, Apple Silicon** (M1–M4) | | Runs **natively** on arm64 — no emulation |
+| **macOS, Intel** | | |
+| **Linux** (any distro) | | Docker Engine + Compose |
 | **Ubuntu 24.04 natively** | — | You don't need this. Install ROS directly. |
 
 The base image is multi-architecture, so Docker pulls the right build for your CPU

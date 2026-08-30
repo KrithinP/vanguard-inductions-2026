@@ -1,4 +1,14 @@
-# 🛰 SOL 1 — "Boot Sequence"
+# SOL 1 — "Boot Sequence"
+
+```
+╔════════════════════════════════════════════════════════════════╗
+║  SOL 001 · LANDING + 0                                         ║
+║  SPROSCAPE · 18.4°N 77.5°E                                     ║
+║  STATUS: SYSTEMS OFFLINE                                       ║
+╠════════════════════════════════════════════════════════════════╣
+║  Recover the workstation. Wake the flight computer.            ║
+╚════════════════════════════════════════════════════════════════╝
+```
 
 > **Objective:** bring a workstation online, recover the mission authentication
 > phrase, and put the rover's first command on the wire.
@@ -28,24 +38,24 @@ needing them.
 
 Install **Ubuntu 24.04 LTS**.
 
-📖 [`handbook/00-install-ubuntu.md`](../handbook/00-install-ubuntu.md)
+ [`handbook/00-install-ubuntu.md`](../handbook/00-install-ubuntu.md)
 
 Confirm with `lsb_release -a` — it must say `Release: 24.04`.
 
 ### 2 · Learn to drive the terminal
 
-📖 [`handbook/01-terminal.md`](../handbook/01-terminal.md)
+ [`handbook/01-terminal.md`](../handbook/01-terminal.md)
 
 Read it with a terminal open. Type every command as you go. Reading about `grep`
 teaches you nothing; using it teaches you `grep`.
 
 ### 3 · Understand `apt`
 
-📖 [`handbook/02-apt.md`](../handbook/02-apt.md)
+ [`handbook/02-apt.md`](../handbook/02-apt.md)
 
 ### 4 · Understand `.bashrc`, `PATH` and `source`
 
-📖 [`handbook/03-bashrc-path-source.md`](../handbook/03-bashrc-path-source.md)
+ [`handbook/03-bashrc-path-source.md`](../handbook/03-bashrc-path-source.md)
 
 **Do not skim this one.** It is the difference between debugging your code and
 debugging your shell, and almost everyone who skips it loses an evening to
@@ -53,7 +63,7 @@ debugging your shell, and almost everyone who skips it loses an evening to
 
 ### 5 · Install ROS 2 Jazzy
 
-📖 [`handbook/04-install-ros2.md`](../handbook/04-install-ros2.md)
+ [`handbook/04-install-ros2.md`](../handbook/04-install-ros2.md)
 
 Finish with:
 
@@ -65,12 +75,12 @@ Every line must read **GO** before you continue.
 
 ### 6 · Learn to inspect a running system
 
-📖 [`handbook/05-nodes-and-topics.md`](../handbook/05-nodes-and-topics.md)
+ [`handbook/05-nodes-and-topics.md`](../handbook/05-nodes-and-topics.md)
 
 Run turtlesim and work through the nine inspection commands. Drive the turtle by
 hand with `ros2 topic pub` before you write any code.
 
-### 7 · Recover the mission directory 🔍
+### 7 · Recover the mission directory
 
 Somewhere in this repository is a hidden directory holding three fragments of the
 authentication phrase. Find them.
@@ -105,8 +115,8 @@ Need the reminder later: `./tools/vanguard flag`
 
 ### 9 · Write your first node
 
-📖 [`handbook/06-workspace-and-packages.md`](../handbook/06-workspace-and-packages.md)
-📖 [`handbook/07-first-node.md`](../handbook/07-first-node.md)
+ [`handbook/06-workspace-and-packages.md`](../handbook/06-workspace-and-packages.md)
+ [`handbook/07-first-node.md`](../handbook/07-first-node.md)
 
 Build a package called **`first_light`** containing a node that:
 

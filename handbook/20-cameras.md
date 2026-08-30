@@ -118,9 +118,7 @@ what turn it back into a picture.
 | `rgb8` | 3 bytes per pixel, red-green-blue |
 | `bgr8` | 3 bytes per pixel, **blue-green-red** |
 | `mono8` | 1 byte per pixel, grayscale |
-| `32FC1` | one 32-bit float per pixel (depth, in metres) |
-
-**OpenCV uses BGR. ROS commonly publishes RGB.** Get it backwards and everything
+| `32FC1` | one 32-bit float per pixel (depth, in metres) | **OpenCV uses BGR. ROS commonly publishes RGB.** Get it backwards and everything
 red looks blue. It's a rite of passage — the useful part is recognising it in one
 second instead of debugging your detector for an hour.
 
@@ -134,7 +132,6 @@ from rclpy.node import Node
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import cv2
-
 
 class Grayscaler(Node):
     def __init__(self):
@@ -155,7 +152,6 @@ class Grayscaler(Node):
         # needs them later.
         self.pub.publish(to_image_msg(gray, 'mono8', msg.header))
 
-
 def main(args=None):
     rclpy.init(args=args)
     node = Grayscaler()
@@ -168,15 +164,14 @@ def main(args=None):
         rclpy.shutdown()
 ```
 
-
 ## Publishing an image back — and a trap
 
 You'd expect `cv_bridge` to convert both ways. It doesn't, on our stack:
 
 | Direction | Function | Works? |
 |---|---|---|
-| ROS → OpenCV | `imgmsg_to_cv2` | ✅ yes |
-| OpenCV → ROS | `cv2_to_imgmsg` | ❌ **`KeyError: 16`** |
+| ROS → OpenCV | `imgmsg_to_cv2` |  yes |
+| OpenCV → ROS | `cv2_to_imgmsg` | **`KeyError: 16`** |
 
 `cv_bridge` ships with ROS 2 Jazzy and was built for OpenCV 4. Our OpenCV is 5,
 which renumbered its internal type constants, so `cv2_to_imgmsg` can't map them
@@ -187,7 +182,6 @@ what an `Image` message is:
 
 ```python
 from sensor_msgs.msg import Image
-
 
 def to_image_msg(array, encoding, header):
     """numpy array -> sensor_msgs/Image, without cv_bridge.

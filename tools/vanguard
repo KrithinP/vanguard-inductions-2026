@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # vanguard — environment doctor and self-check for the Project Vanguard induction.
 #
-#   ./tools/vanguard doctor     check your workstation
-#   ./tools/vanguard check      run the checks for the current Sol
-#   ./tools/vanguard flag       help for the authentication step
+# ./tools/vanguard doctor     check your workstation
+# ./tools/vanguard check      run the checks for the current Sol
+# ./tools/vanguard flag       help for the authentication step
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

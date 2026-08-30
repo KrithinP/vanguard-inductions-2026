@@ -175,7 +175,7 @@ and two **Path** displays:
 
 ### Global vs local
 
-|  | Global | Local |
+| | Global | Local |
 |---|---|---|
 | Covers | the whole known map | a 4×4 m window |
 | Frame | `map` | `odom` |

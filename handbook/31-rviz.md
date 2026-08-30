@@ -29,9 +29,7 @@ Everything is drawn relative to the Fixed Frame. Choose one that doesn't exist a
 |---|---|
 | `base_link` | the world moving around a stationary robot |
 | `odom` | the robot driving through a stationary world |
-| `map` | same, but corrected by SLAM — needs SLAM running |
-
-**Default is `map`, which doesn't exist until you run SLAM.** That single fact is
+| `map` | same, but corrected by SLAM — needs SLAM running | **Default is `map`, which doesn't exist until you run SLAM.** That single fact is
 the cause of most "RViz is broken" reports. When in doubt, set it to `odom`.
 
 ## Displays

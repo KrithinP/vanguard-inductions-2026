@@ -1,4 +1,14 @@
-# 🛰 SOL 4 — "Terra Incognita"
+# SOL 4 — "Terra Incognita"
+
+```
+╔════════════════════════════════════════════════════════════════╗
+║  SOL 067 · LANDING + 66                                        ║
+║  TERRA INCOGNITA · unmapped                                    ║
+║  STATUS: OPERATOR OUT OF CONTACT                               ║
+╠════════════════════════════════════════════════════════════════╣
+║  No map. No instructions. Go and find out.                     ║
+╚════════════════════════════════════════════════════════════════╝
+```
 
 > **The hard one.** Optional, and it can only add to your evaluation — but this is
 > the task that tells us who you are as an engineer.
@@ -50,7 +60,7 @@ ros2 launch vanguard_navigation slam.launch.py   # mapping
 ros2 launch vanguard_navigation nav2.launch.py   # navigation
 ```
 
-📖 [`handbook/32-slam-and-nav2.md`](../handbook/32-slam-and-nav2.md) explains what
+ [`handbook/32-slam-and-nav2.md`](../handbook/32-slam-and-nav2.md) explains what
 it's doing and how to tell when it isn't.
 
 ---
@@ -63,7 +73,7 @@ want the point cloud; it isn't required.
 Then learn RViz properly and **commit a saved `.rviz` config** showing the scan,
 the robot model and the TF tree at once.
 
-📖 [`handbook/30-sensors.md`](../handbook/30-sensors.md) ·
+ [`handbook/30-sensors.md`](../handbook/30-sensors.md) ·
 [`handbook/31-rviz.md`](../handbook/31-rviz.md)
 
 ---
@@ -90,7 +100,7 @@ Requirements:
 **Prove it:** drop the rover in a world with scattered obstacles and let it run
 for **two minutes without touching anything**. Record it.
 
-📖 [`handbook/30-sensors.md`](../handbook/30-sensors.md) for the message format.
+ [`handbook/30-sensors.md`](../handbook/30-sensors.md) for the message format.
 The algorithm is yours.
 
 ---
@@ -116,7 +126,7 @@ Requirements:
 - Use the **async** API (`send_goal_async`, `get_result_async`). Blocking calls
   inside a node deadlock it, and finding that out is part of the task.
 
-📖 [`handbook/34-action-clients.md`](../handbook/34-action-clients.md)
+ [`handbook/34-action-clients.md`](../handbook/34-action-clients.md)
 
 ---
 
@@ -152,9 +162,9 @@ Requirements:
 **Prove it:** start with a blank map and let it explore your arena unattended
 until it stops. Record it, and save the resulting map.
 
-📖 [`handbook/33-occupancy-grids.md`](../handbook/33-occupancy-grids.md) —
+ [`handbook/33-occupancy-grids.md`](../handbook/33-occupancy-grids.md) —
 grid↔world coordinates, and what the cell values mean
-📖 [`handbook/35-exploration.md`](../handbook/35-exploration.md) — the algorithm,
+ [`handbook/35-exploration.md`](../handbook/35-exploration.md) — the algorithm,
 described
 
 ---

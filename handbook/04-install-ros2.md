@@ -40,7 +40,7 @@ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
   -o /usr/share/keyrings/ros-archive-keyring.gpg
 ```
 
-> ⚠ **If that `curl` fails, run it again.** `raw.githubusercontent.com` is
+> **Warning —** If that `curl` fails, run it again.** `raw.githubusercontent.com` is
 > intermittently unreachable from some campus and mobile networks — we saw it fail
 > three times in a row and then succeed on the fourth. Errors that mean "try
 > again", not "you did it wrong":
@@ -110,7 +110,7 @@ pip install --user --break-system-packages opencv-contrib-python
 pip install --user --break-system-packages "numpy<2"
 ```
 
-> ⚠ **Both lines, in that order.** ROS 2's `cv_bridge` is compiled against
+> **Warning —** Both lines, in that order.** ROS 2's `cv_bridge` is compiled against
 > NumPy 1.x. Installing OpenCV pulls in NumPy 2.x, which breaks `cv_bridge` at
 > runtime with a long `ImportError` about *"a module compiled using NumPy 1.x
 > cannot be run in NumPy 2.x"*. The second line puts NumPy back where ROS expects

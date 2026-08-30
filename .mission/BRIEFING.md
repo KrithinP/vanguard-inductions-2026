@@ -1,4 +1,4 @@
-# ⚠ RECOVERED DATA — MISSION DIRECTORY
+# Warning: RECOVERED DATA — MISSION DIRECTORY
 
 The rover's flight computer took a hit during descent. Three fragments of the
 mission authentication phrase survived, scattered across this directory.
