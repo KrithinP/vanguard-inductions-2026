@@ -113,7 +113,7 @@ What broke, what you worked out, what still doesn't make sense.
 
 ## Deliverables
 
-| | |
+| What | Details |
 |---|---|
 | `src/sol2/` | rover description, launch files, your driving node |
 | screenshot | RViz showing the rover and its TF tree |

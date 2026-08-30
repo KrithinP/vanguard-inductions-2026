@@ -132,7 +132,7 @@ interested in are the people who measured it and can say *why*.
 
 ## Deliverables
 
-| | |
+| What | Details |
 |---|---|
 | `src/sol3/` | camera setup, detection node, pose estimation |
 | detector output | what your detector found on all six test images |

@@ -1,15 +1,7 @@
 <div align="center">
 
-```
-             ___
-            /   \___          P R O J E C T
-           |  o  o   \_        V A N G U A R D
-           |___________|
-            |_|     |_|       Autonomous Subsystem
-   ================================================================
-```
-
-# INDUCTION 2026
+# PROJECT VANGUARD
+### Autonomous Subsystem — Induction 2026
 
 **BITS Pilani Hyderabad · Mars Rover Team**
 
@@ -52,14 +44,15 @@ that checks your work before a human ever sees it.
 
 These are the tasks. Do them in order.
 
-| | | | | |
-|---|---|---|
-| **Sol 1** | [sols/sol1.md](sols/sol1.md) | Windows / macOS / Linux |
-| **Sol 2** | [sols/sol2.md](sols/sol2.md) | |
-| **Sol 3** | [sols/sol3.md](sols/sol3.md) | |
-| **Sol 4** | [sols/sol4.md](sols/sol4.md) | bonus |
+- **Sol 1** — [sols/sol1.md](sols/sol1.md) · separate sheets for Windows, macOS and Linux
+- **Sol 2** — [sols/sol2.md](sols/sol2.md)
+- **Sol 3** — [sols/sol3.md](sols/sol3.md)
+- **Sol 4** — [sols/sol4.md](sols/sol4.md) · **bonus**
 
-Printable PDFs and more detail in [`sols/`](sols/README.md).
+**Sols 1–3 are compulsory. Sol 4 is a bonus** — it can only add to your
+evaluation, never subtract, and finishing it earns serious brownie points.
+
+Printable PDFs in [`sols/`](sols/README.md).
 
 > ### It looks like a lot. It isn't as bad as it looks.
 >
@@ -73,11 +66,7 @@ Printable PDFs and more detail in [`sols/`](sols/README.md).
 >
 > **The support thins out as you go, on purpose.** Sol 1 hands you a working
 > example. By Sol 4 you get the problem described and build it yourself. If Sol 4
-> feels hard, that is the design — it is a bonus, and it is meant to stretch the
-> people who want stretching.
->
-> **You are not expected to finish all four.** Sol 1 alone, done properly and
-> understood, is a good submission.
+> feels hard, that is the design.
 
 ## What you need
 
@@ -141,7 +130,7 @@ echo "NIGHTJAR" > callsign.txt
 
 ### 7. Get a working environment
 
-| | For | Start at |
+| Route | For | Start at |
 |---|---|---|
 | **Docker** | Windows 10/11, macOS (incl. Apple Silicon), any Linux. Nothing touches your partitions. | [`docker/`](docker/README.md) |
 | **Ubuntu 24.04** | Dual boot or a spare machine. Faster, and what the team runs. | [`handbook/00`](handbook/00-install-ubuntu.md) |
@@ -160,7 +149,7 @@ haven't started is reported as *not started* and never counts against you.
 
 ## What's in here
 
-| | |
+| Directory | What it holds |
 |---|---|
 | [`sols/`](sols/README.md) | The four Sol sheets, in Markdown and as printable PDFs. |
 | [`handbook/`](handbook/) | The reference material, from the terminal up. Each task tells you which parts you need. |
@@ -185,7 +174,7 @@ explained out loud. Upload to Google Drive (*Anyone with the link*) or YouTube
 (*Unlisted*) and paste the link in your PR — **check it opens in a private
 window.** Don't commit video files.
 
-| | |
+| | Date |
 |---|---|
 | **Opens** | 30 August 2026 |
 | **Everything due** | **21 September 2026, 23:59 IST** |
@@ -230,7 +219,7 @@ you tried, the exact command, the full error, and your `vanguard doctor` output.
 
 Every NASA mission has a patch. So do we — awarded, not given:
 
-| | |
+| Patch | Earned by |
 |---|---|
 | **FIRST LIGHT** | Sol 1 complete, and you can explain your node |
 | **ROLLING** | Sol 2 complete — it drives, and comes back roughly where it started |

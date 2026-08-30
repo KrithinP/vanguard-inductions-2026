@@ -187,7 +187,7 @@ reasoning honestly beats sounding confident.
 
 ## Deliverables
 
-| | |
+| What | Details |
 |---|---|
 | `src/sol4/` | your avoidance node, action client, and explorer |
 | `src/sol4/NOTES.md` | the write-up |

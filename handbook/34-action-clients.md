@@ -11,7 +11,7 @@ you might want to cancel, and at the end you need to know whether it worked.
 
 That's an **action**. Three parts:
 
-| | |
+| Part | What it is |
 |---|---|
 | **Goal** | what you want. Sent once. |
 | **Feedback** | progress, streamed while it runs |
