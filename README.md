@@ -37,6 +37,16 @@ starts from "what is a terminal".
 
 ## Set up
 
+### 0. Star and Watch this repository
+
+Two clicks, top right, and both are useful to you:
+
+- ⭐ **Star** — tells us how many people are actually taking part, which is how we
+  decide how much support to staff. Takes a second and genuinely helps.
+- 👁 **Watch → All Activity** — **this is how you find out when a new mission is
+  released.** Missions drop through the induction with no fixed timetable. If you
+  aren't watching, you will miss one.
+
 ### 1. Fork this repository
 
 **Fork**, top right. That gives you your own copy to work in.
@@ -91,6 +101,18 @@ Check yourself at any point:
 Missions are released one at a time through the induction — you'll get the next
 when the current one closes, the same way a real mission flies what's in front of
 it while the next phase is still being planned.
+
+**When a new one drops, pull it into your fork:**
+
+```bash
+git remote add upstream https://github.com/KrithinP/vanguard-inductions-2026.git   # once
+git fetch upstream
+git merge upstream/main
+```
+
+Your fork does not update by itself. If you've never merged before, this is a good
+first time — and if you hit a conflict, that's a normal part of the job, not a
+disaster. Ask in Issues.
 
 Each mission tells you which parts of [`handbook/`](handbook/) you need.
 
