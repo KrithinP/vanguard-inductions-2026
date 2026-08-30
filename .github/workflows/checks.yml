@@ -10,6 +10,8 @@ permissions:
 
 jobs:
   poll:
+    # The upstream repo holds no submission, so polling it is meaningless.
+    if: github.event_name == 'workflow_dispatch' || github.repository != 'KrithinP/vanguard-inductions-2026'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     container:

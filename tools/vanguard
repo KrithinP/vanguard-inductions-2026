@@ -103,7 +103,11 @@ case "${1:-doctor}" in
   doctor) doctor ;;
   check)
     latest=$(ls "$ROOT"/tools/checks/sol*.sh 2>/dev/null | sort | tail -1)
-    [ -n "$latest" ] && bash "$latest" || echo "No checks available yet."
+    if [ -n "$latest" ]; then
+      bash "$latest"
+      exit $?
+    fi
+    echo "No checks available yet."
     ;;
   flag)
     cat <<'HELP'
