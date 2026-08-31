@@ -10,11 +10,12 @@
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
-> **This is the brief** — what to build and what to hand in. It links to the
-> handbook chapters you'll need as you go.
+> **This is the brief only** — what to build and what to hand in, with links to
+> the handbook chapters you'll need.
 >
-> **The PDF version has the whole task in one file** — this brief plus every
-> handbook chapter it depends on, bundled inline: `sols/sol1-windows.pdf / sol1-macos.pdf / sol1-linux.pdf`.
+> **If you're doing the induction, work from the PDF instead:**
+> `sols/sol1-windows.pdf, sol1-macos.pdf or sol1-linux.pdf`. It has this brief plus every handbook chapter it depends on,
+> bundled in one file, in order, and it works offline.
 
 > **Objective:** bring a workstation online, recover the mission authentication
 > phrase, and put the rover's first command on the wire.

@@ -10,11 +10,12 @@
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
-> **This is the brief** — what to build and what to hand in. It links to the
-> handbook chapters you'll need as you go.
+> **This is the brief only** — what to build and what to hand in, with links to
+> the handbook chapters you'll need.
 >
-> **The PDF version has the whole task in one file** — this brief plus every
-> handbook chapter it depends on, bundled inline: `sols/sol4-autonomy.pdf`.
+> **If you're doing the induction, work from the PDF instead:**
+> `sols/sol4-autonomy.pdf`. It has this brief plus every handbook chapter it depends on,
+> bundled in one file, in order, and it works offline.
 
 > **The hard one.** Optional, and it can only add to your evaluation — but this is
 > the task that tells us who you are as an engineer.

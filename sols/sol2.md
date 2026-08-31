@@ -10,11 +10,12 @@
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
-> **This is the brief** — what to build and what to hand in. It links to the
-> handbook chapters you'll need as you go.
+> **This is the brief only** — what to build and what to hand in, with links to
+> the handbook chapters you'll need.
 >
-> **The PDF version has the whole task in one file** — this brief plus every
-> handbook chapter it depends on, bundled inline: `sols/sol2-rover.pdf`.
+> **If you're doing the induction, work from the PDF instead:**
+> `sols/sol2-rover.pdf`. It has this brief plus every handbook chapter it depends on,
+> bundled in one file, in order, and it works offline.
 
 > **Objective:** build the rover, put it in the world, and drive it.
 > **Effort:** 6–8 hours.

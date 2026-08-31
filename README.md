@@ -42,20 +42,21 @@ that checks your work before a human ever sees it.
 
 ## The Sols
 
-These are the tasks. Do them in order.
+These are the tasks. Do them in order. **Work from the PDFs** — each one is the
+complete task in a single file.
 
-- **Sol 1** — [sols/sol1.md](sols/sol1.md) · separate sheets for Windows, macOS and Linux
-- **Sol 2** — [sols/sol2.md](sols/sol2.md)
-- **Sol 3** — [sols/sol3.md](sols/sol3.md)
-- **Sol 4** — [sols/sol4.md](sols/sol4.md) · **bonus**
+- **Sol 1** — [Windows](sols/sol1-windows.pdf) · [macOS](sols/sol1-macos.pdf) · [Linux](sols/sol1-linux.pdf)
+- **Sol 2** — [sol2-rover.pdf](sols/sol2-rover.pdf)
+- **Sol 3** — [sol3-vision.pdf](sols/sol3-vision.pdf)
+- **Sol 4** — [sol4-autonomy.pdf](sols/sol4-autonomy.pdf) · **bonus**
 
 **Sols 1–3 are compulsory. Sol 4 is a bonus** — it can only add to your
 evaluation, never subtract, and finishing it earns serious brownie points.
 
-Each `.md` above is the **brief** — what to build and what to hand in — and links
-to the [`handbook/`](handbook/) chapters you need. The **PDFs in
-[`sols/`](sols/README.md) contain the entire task in one file**: the brief plus
-every handbook chapter it depends on, bundled inline. Use whichever suits you.
+Only Sol 1 differs by operating system; pick the one matching your laptop.
+
+There are also short Markdown briefs in [`sols/`](sols/README.md) if you'd rather
+skim the repo in a browser, but the PDFs are what you should be working from.
 
 > ### It looks like a lot. It isn't as bad as it looks.
 >

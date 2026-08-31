@@ -10,11 +10,12 @@
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
-> **This is the brief** — what to build and what to hand in. It links to the
-> handbook chapters you'll need as you go.
+> **This is the brief only** — what to build and what to hand in, with links to
+> the handbook chapters you'll need.
 >
-> **The PDF version has the whole task in one file** — this brief plus every
-> handbook chapter it depends on, bundled inline: `sols/sol3-vision.pdf`.
+> **If you're doing the induction, work from the PDF instead:**
+> `sols/sol3-vision.pdf`. It has this brief plus every handbook chapter it depends on,
+> bundled in one file, in order, and it works offline.
 
 > **Objective:** give the rover a camera, and teach it to recognise where it is
 > from what it sees.
