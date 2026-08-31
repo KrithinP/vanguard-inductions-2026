@@ -70,13 +70,24 @@ docker compose down
 
 ### Where your files live
 
-The repository's `src/` folder is mounted at `/root/vanguard_ws/src` inside the
-container. **Edit files in your normal editor on your own machine** — VS Code,
-whatever you like — and build and run them inside the container. Changes appear
-instantly on both sides.
+**The whole repository is mounted at `/root/vanguard_ws`** inside the container.
+So `~/vanguard_ws` in the container and your cloned repo on your laptop are the
+same files — the handbook, the tooling, `src/`, everything.
 
-Anything you write **outside** `src/` inside the container is lost when the
-container is removed. Keep your work in `src/`.
+**Edit files in your normal editor on your own machine** — VS Code, whatever you
+like — and build and run them inside the container. Changes appear instantly on
+both sides, in both directions.
+
+That also means the checks work from inside the container:
+
+```bash
+cd ~/vanguard_ws
+./tools/vanguard doctor
+./tools/vanguard check
+```
+
+Anything you create **outside** `~/vanguard_ws` in the container is lost when the
+container is removed. Keep everything in there.
 
 ## Honest limitations
 

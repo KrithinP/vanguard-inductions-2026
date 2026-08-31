@@ -16,13 +16,21 @@ you know what a healthy stack looks like first.
 ## Getting the provided package
 
 ```bash
-cp -r vanguard_navigation ~/vanguard_ws/src/
-cd ~/vanguard_ws && colcon build --symlink-install && source install/setup.bash
+cd <the repository>          # in Docker this is ~/vanguard_ws
+colcon build --symlink-install
+source install/setup.bash
 ```
 
-**Docker users:** already installed — nothing to do.
+> **Do not copy it into `src/`.** It already lives in this repository and colcon
+> finds it there. Copy it as well and you get two packages with the same name,
+> and the build refuses to run:
+> `ERROR:colcon:colcon build: Duplicate package names not supported`
 
-**Native users:**
+**Docker users:** the underlying SLAM and Nav2 packages are already in the image,
+and the repository is mounted at `~/vanguard_ws`, so the two commands above are
+all you need.
+
+**Native users:** install the underlying packages first, then build:
 
 ```bash
 sudo apt install -y ros-jazzy-slam-toolbox ros-jazzy-navigation2 ros-jazzy-nav2-bringup

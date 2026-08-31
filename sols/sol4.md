@@ -60,12 +60,16 @@ the layer that decides what to do with them.
 configuration, launch files included. Read it, run it, don't rewrite it.
 
 ```bash
-cp -r vanguard_navigation ~/vanguard_ws/src/
-cd ~/vanguard_ws && colcon build --symlink-install && source install/setup.bash
+cd <the repository>          # in Docker this is ~/vanguard_ws
+colcon build --symlink-install
+source install/setup.bash
 
 ros2 launch vanguard_navigation slam.launch.py   # mapping
 ros2 launch vanguard_navigation nav2.launch.py   # navigation
 ```
+
+> It already lives in this repository — **don't copy it into `src/`**, or colcon
+> sees the same package twice and refuses to build.
 
  [`handbook/32-slam-and-nav2.md`](../handbook/32-slam-and-nav2.md) explains what
 it's doing and how to tell when it isn't.
