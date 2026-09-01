@@ -148,8 +148,16 @@ On Windows or a Mac and unsure? **Use Docker.**
 ./tools/vanguard check     # is my work complete?
 ```
 
-The same check runs automatically on every push to your fork. Anything you
-haven't started is reported as *not started* and never counts against you.
+The same check runs automatically on every push to your fork.
+
+> **Push early and push often.** Commit your mission log whenever you sit down to
+> work — that is exactly what we want to see.
+>
+> **A red X does not mean you broke something.** It means a Sol you have started
+> isn't finished yet, which is the normal state of affairs until it is. It is a
+> progress report, not a grade, and **it has no bearing on your evaluation.**
+> Sols you haven't begun are ignored entirely, and setting up your callsign and
+> log will never fail a run.
 
 ## What's in here
 

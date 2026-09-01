@@ -20,10 +20,26 @@ note()  { printf "  ${Y}·     %s${N}\n" "$1"; }
 # has this mission been started at all?
 has_work() { [ -d "src/sol$1" ] && [ -n "$(find "src/sol$1" -type f ! -name '.gitkeep' 2>/dev/null | head -1)" ]; }
 
+# ─────────────────────────────── SETUP ──────────────────────────────────
+# Not a Sol. Reported so your first push shows something, and it never fails.
+section "SETUP"
+if [ -f callsign.txt ]; then
+  CS=$(tr -d '[:space:]' < callsign.txt)
+  if [[ "$CS" =~ ^[A-Z0-9]{3,16}$ ]]; then
+    go "callsign = $CS"
+  else
+    note "callsign.txt should be 3-16 chars, A-Z and 0-9, upper case. Got: '$CS'"
+  fi
+else
+  idle "no callsign yet — echo \"YOURNAME\" > callsign.txt"
+fi
+[ -f MISSION_LOG.md ] && go "mission log started ($(wc -w < MISSION_LOG.md) words)" \
+  || idle "no mission log yet — there's a template in the repo"
+
 # ──────────────────────────────── SOL 1 ────────────────────────────────
 section "SOL 001 — BOOT SEQUENCE"
 MFAIL=0
-if [ ! -f callsign.txt ] && [ ! -f FLAG.txt ] && ! has_work 1; then
+if [ ! -f FLAG.txt ] && ! has_work 1; then
   idle "not started"
 else
   STARTED="$STARTED 1"
@@ -58,8 +74,6 @@ else
     set +u; source /opt/ros/jazzy/setup.bash; set -u
     BD=$(mktemp -d); mkdir -p "$BD/src"; cp -r src/sol1/* "$BD/src/" 2>/dev/null || true
     if (cd "$BD" && colcon build --symlink-install >/tmp/colcon.log 2>&1); then
-      # colcon only WARNS on a bad package.xml, then builds something that
-      # ros2 run can never find. Catch it here or the next line is baffling.
       if grep -q "Failed to parse ROS package manifest" /tmp/colcon.log; then
         BADMAIL=$(grep -o 'Invalid email "[^"]*"' /tmp/colcon.log | head -1)
         nogo "package.xml is invalid — $BADMAIL" \
@@ -157,13 +171,16 @@ fi
 # ─────────────────────────────── SUMMARY ───────────────────────────────
 printf "\n${B}────────────────────────────────────────${N}\n"
 if [ -z "$STARTED" ]; then
-  printf "${D}Nothing submitted yet. Start at sols/sol1.md${N}\n\n"
+  printf "${D}Nothing started yet. Your first Sol sheet is in sols/ — good luck.${N}\n\n"
   exit 0
 fi
 printf "Started:%s   Complete:%s\n" "${STARTED:-  none}" "${DONE_LIST:-  none}"
 if [ "$FAIL" -eq 0 ]; then
   printf "${G}${B}ALL STATIONS GO.${N}  ${D}Dare mighty things.${N}\n\n"
 else
-  printf "${R}${B}HOLD — fix the NO-GO lines above.${N} ${D}(Anything not started is ignored.)${N}\n\n"
+  printf "${R}${B}HOLD — not finished yet.${N}\n"
+  printf "${D}This is a progress report, not an error. A red run just means the Sol you\n"
+  printf "have started isn't complete. Nothing you have or haven't pushed counts\n"
+  printf "against you, and Sols you haven't begun are ignored entirely.${N}\n\n"
   exit 1
 fi
