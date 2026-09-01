@@ -120,15 +120,31 @@ case "${1:-doctor}" in
     echo "No checks available."
     ;;
   flag)
-    cat <<'HELP'
-Assemble the three fragments from .mission/ into one phrase, joined by hyphens
-and in UPPER CASE, then hash it together with your callsign:
+    CS=""
+    [ -f "$ROOT/callsign.txt" ] && CS=$(tr -d '[:space:]' < "$ROOT/callsign.txt" | tr '[:lower:]' '[:upper:]')
+    if [ -n "$CS" ]; then
+      cat <<HELP
+Assemble the three fragments you recovered from .mission/ into one phrase, joined
+by hyphens and in UPPER CASE. Then run this, with the fragments filled in:
 
-    echo -n "FRAGMENT1-FRAGMENT2-FRAGMENT3:YOURCALLSIGN" | sha256sum | cut -c1-16
+    echo -n "FRAGMENT1-FRAGMENT2-FRAGMENT3:$CS" | sha256sum | cut -c1-16
 
-Write the 16-character result into FLAG.txt at the repo root.
-Your callsign must match callsign.txt exactly (upper case).
+Write the 16-character result into FLAG.txt at the repo root:
+
+    echo "your16charresult" > FLAG.txt
+
+Your callsign is read as **$CS** (always upper case, whatever you typed in
+callsign.txt). Use exactly that in the command above, or the flag will not match.
 HELP
+    else
+      cat <<'HELP'
+Create callsign.txt first:
+
+    echo "NIGHTJAR" > callsign.txt
+
+Then run this again and it will show you the exact command to run.
+HELP
+    fi
     ;;
   *) echo "usage: vanguard [doctor|check|flag]" ;;
 esac

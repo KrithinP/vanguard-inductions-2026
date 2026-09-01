@@ -25,10 +25,16 @@ has_work() { [ -d "src/sol$1" ] && [ -n "$(find "src/sol$1" -type f ! -name '.gi
 section "SETUP"
 if [ -f callsign.txt ]; then
   CS=$(tr -d '[:space:]' < callsign.txt)
-  if [[ "$CS" =~ ^[A-Z0-9]{3,16}$ ]]; then
-    go "callsign = $CS"
+  UP=$(printf '%s' "$CS" | tr '[:lower:]' '[:upper:]')
+  if [[ "$UP" =~ ^[A-Z0-9]{3,16}$ ]]; then
+    if [ "$CS" = "$UP" ]; then
+      go "callsign = $CS"
+    else
+      go "callsign = $UP  (read as upper case)"
+      note "use $UP when you compute your flag, not '$CS' — the case matters there"
+    fi
   else
-    note "callsign.txt should be 3-16 chars, A-Z and 0-9, upper case. Got: '$CS'"
+    note "callsign.txt should be 3-16 characters, letters and numbers only. Got: '$CS'"
   fi
 else
   idle "no callsign yet — echo \"YOURNAME\" > callsign.txt"
