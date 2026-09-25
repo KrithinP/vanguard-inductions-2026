@@ -1,0 +1,14 @@
+1790318357.2209172 [INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-25-06-39-17-218358-0e1bac42f6b7-1392
+1790318357.2213678 [INFO] [launch]: Default logging verbosity is set to INFO
+1790318368.2953677 [INFO] [gazebo-1]: process started with pid [1395]
+1790318368.2976830 [INFO] [robot_state_publisher-2]: process started with pid [1396]
+1790318368.2980027 [INFO] [create-3]: process started with pid [1397]
+1790318368.2981944 [INFO] [parameter_bridge-4]: process started with pid [1398]
+1790318368.8091006 [robot_state_publisher-2] [WARN] [1790318368.807579431] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+1790318368.8102801 [robot_state_publisher-2] [INFO] [1790318368.808047222] [robot_state_publisher]: Robot initialized
+1790318370.8734868 [INFO] [create-3]: process has finished cleanly [pid 1397]
+1790318464.7812572 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+1790318464.7933679 [robot_state_publisher-2] [INFO] [1790318464.779944932] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+1790318464.9223125 [INFO] [parameter_bridge-4]: process has finished cleanly [pid 1398]
+1790318464.9232976 [INFO] [robot_state_publisher-2]: process has finished cleanly [pid 1396]
+1790318465.9973581 [ERROR] [gazebo-1]: process has died [pid 1395, exit code -2, cmd 'ruby /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz sim -r /root/vanguard_ws/install/vanguard_rover/share/vanguard_rover/worlds/arena.sdf --force-version 8'].

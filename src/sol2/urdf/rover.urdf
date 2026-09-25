@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<robot name="vanguard_rover">
+
+  <!-- Chassis Link -->
+  <link name="base_link">
+    <visual>
+      <geometry><box size="0.6 0.4 0.15"/></geometry>
+      <material name="rover_grey"><color rgba="0.6 0.6 0.6 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><box size="0.6 0.4 0.15"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="10.0"/>
+      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.32" iyz="0.0" izz="0.42"/>
+    </inertial>
+  </link>
+
+  <!-- Front Left Wheel -->
+  <link name="wheel_fl">
+    <visual>
+      <geometry><cylinder length="0.05" radius="0.1"/></geometry>
+      <material name="black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder length="0.05" radius="0.1"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.0027" ixy="0" ixz="0" iyy="0.0027" iyz="0" izz="0.005"/>
+    </inertial>
+  </link>
+  <joint name="wheel_fl_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_fl"/>
+    <origin rpy="-1.5708 0 0" xyz="0.2 0.225 -0.05"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Front Right Wheel -->
+  <link name="wheel_fr">
+    <visual>
+      <geometry><cylinder length="0.05" radius="0.1"/></geometry>
+      <material name="black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder length="0.05" radius="0.1"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.0027" ixy="0" ixz="0" iyy="0.0027" iyz="0" izz="0.005"/>
+    </inertial>
+  </link>
+  <joint name="wheel_fr_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_fr"/>
+    <origin rpy="-1.5708 0 0" xyz="0.2 -0.225 -0.05"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Rear Left Wheel -->
+  <link name="wheel_rl">
+    <visual>
+      <geometry><cylinder length="0.05" radius="0.1"/></geometry>
+      <material name="black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder length="0.05" radius="0.1"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.0027" ixy="0" ixz="0" iyy="0.0027" iyz="0" izz="0.005"/>
+    </inertial>
+  </link>
+  <joint name="wheel_rl_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_rl"/>
+    <origin rpy="-1.5708 0 0" xyz="-0.2 0.225 -0.05"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Rear Right Wheel -->
+  <link name="wheel_rr">
+    <visual>
+      <geometry><cylinder length="0.05" radius="0.1"/></geometry>
+      <material name="black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder length="0.05" radius="0.1"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.0027" ixy="0" ixz="0" iyy="0.0027" iyz="0" izz="0.005"/>
+    </inertial>
+  </link>
+  <joint name="wheel_rr_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_rr"/>
+    <origin rpy="-1.5708 0 0" xyz="-0.2 -0.225 -0.05"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Gazebo Diff Drive Plugin -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>wheel_fl_joint</left_joint>
+      <left_joint>wheel_rl_joint</left_joint>
+      <right_joint>wheel_fr_joint</right_joint>
+      <right_joint>wheel_rr_joint</right_joint>
+      <wheel_separation>0.45</wheel_separation>
+      <wheel_radius>0.1</wheel_radius>
+      <topic>/cmd_vel</topic>
+      <odom_topic>/odom</odom_topic>
+      <tf_topic>/tf</tf_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_link</child_frame_id>
+    </plugin>
+  </gazebo>
+
+</robot>
